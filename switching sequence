@@ -2,6 +2,9 @@
 ## constants
 ##
 
+# Arduino pins to stepping motor controller (L293D)
+# + motor cable color
+
 A = 1  # yellow
 B = 2  # white
 C = 3  # blue
@@ -21,13 +24,6 @@ high = 2;
 attract = 3;
 repulse = 4;
 ms = 200;
-
-
-##
-## variables
-##
-
-step = 1
 
 
 ##
@@ -59,13 +55,12 @@ void setCoil(coil, level) {
 #
 void revolute() {
 
-  # init
-
-  setW(0, attract);
-  setW(1, repulse);
-  setW(2, attract);
-  setW(3, repulse);
-  setW(4, attract);
+  # init: attract rotor to the the half-position between coil 4 and coil 0
+  setCoil(0, attract);
+  setCoil(1, repulse);
+  setCoil(2, attract);
+  setCoil(3, repulse);
+  setCoil(4, attract);
   delay(ms);
 
   coil = 0;
