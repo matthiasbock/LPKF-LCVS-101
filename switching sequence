@@ -1,4 +1,3 @@
-
 ##
 ## constants
 ##
@@ -14,7 +13,7 @@ H = 8  # black
 J = 9  # brown
 K = 0  # violet
 
-W = [ [A,B], [C,D], [E,F], [G,H], [J,K] ]
+coils = [ [A,B], [C,D], [E,F], [G,H], [J,K] ]
 
 zero = 0;
 low = 1;
@@ -35,6 +34,25 @@ step = 1
 ## functions
 ##
 
+void setCoil(coil, level) {
+  coil = coil mod 5;
+  P = coils[coil][0];
+  Q = coils[coil][1];
+
+  if (level == attract) {
+    setPin(P, high);
+    setPin(Q, low);
+    }
+  else if (level == repulse) {
+    setPin(P, low);
+    setPin(Q, high);
+    }
+  else {
+    setPin(P, zero);
+    setPin(Q, zero);
+    }
+  }
+
 #
 # half-step switching sequence
 # as described on datasheet page 6
@@ -42,33 +60,30 @@ step = 1
 void revolute() {
 
   # init
-  #for (i=0; i <= 4; i++)
-  #  setW(i, zero);
 
   setW(0, attract);
   setW(1, repulse);
   setW(2, attract);
   setW(3, repulse);
   setW(4, attract);
-
   delay(ms);
 
-  current_W = 0;
+  coil = 0;
 
   for (i=0; i <= 1000; i++) {
-    setW(current_W, zero);
+    setCoil(coil, zero);
     delay(ms);
-    setW(current_W, repulse);
-    delay(ms);
-
-    current_W = (current_W + 1) mod 5;
-
-    setW(current_W, zero);
-    delay(ms);
-    setW(current_W, attract);
+    setCoil(coil, repulse);
     delay(ms);
 
-    current_W = (current_W + 1) mod 5;
+    coil = (coil + 1) mod 5;
+
+    setCoil(coil, zero);
+    delay(ms);
+    setCoil(coil, attract);
+    delay(ms);
+
+    coil = (coil + 1) mod 5;
     }
   }
 
