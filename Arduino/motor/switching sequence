@@ -1,0 +1,84 @@
+##
+## constants
+##
+
+# Arduino pins to stepping motor controller (L293D)
+# + motor cable color
+
+A = 1  # yellow
+B = 2  # white
+C = 3  # blue
+D = 4  # red
+E = 5  # orange
+F = 6  # green
+G = 7  # grey
+H = 8  # black
+J = 9  # brown
+K = 0  # violet
+
+coils = [ [A,B], [C,D], [E,F], [G,H], [J,K] ]
+
+zero = 0;
+low = 1;
+high = 2;
+attract = 3;
+repulse = 4;
+ms = 200;
+
+
+##
+## functions
+##
+
+void setCoil(coil, level) {
+  coil = coil mod 5;
+  P = coils[coil][0];
+  Q = coils[coil][1];
+
+  if (level == attract) {
+    setPin(P, high);
+    setPin(Q, low);
+    }
+  else if (level == repulse) {
+    setPin(P, low);
+    setPin(Q, high);
+    }
+  else {
+    setPin(P, zero);
+    setPin(Q, zero);
+    }
+  }
+
+#
+# half-step switching sequence
+# as described on datasheet page 6
+#
+void revolute() {
+
+  # init: attract rotor to the the half-position between coil 4 and coil 0
+  setCoil(0, attract);
+  setCoil(1, repulse);
+  setCoil(2, attract);
+  setCoil(3, repulse);
+  setCoil(4, attract);
+  delay(ms);
+
+  coil = 0;
+
+  for (i=0; i <= 1000; i++) {
+    setCoil(coil, zero);
+    delay(ms);
+    setCoil(coil, repulse);
+    delay(ms);
+
+    coil = (coil + 1) mod 5;
+
+    setCoil(coil, zero);
+    delay(ms);
+    setCoil(coil, attract);
+    delay(ms);
+
+    coil = (coil + 1) mod 5;
+    }
+  }
+
