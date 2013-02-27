@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2798633"
-     inkscape:cx="846.95003"
-     inkscape:cy="266.85435"
+     inkscape:zoom="0.4525"
+     inkscape:cx="650.6014"
+     inkscape:cy="290.52436"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -63,21 +63,21 @@
        y="611.86218"
        x="83"
        id="image3188"
-       xlink:href="file:///home/user/Desktop/L293D.png"
+       xlink:href="file://./L293D.png"
        height="283"
        width="254" />
     <image
        y="601.86218"
        x="700"
        id="image3188-7"
-       xlink:href="file:///home/user/Desktop/L293D.png"
+       xlink:href="file://./L293D.png"
        height="283"
        width="254" />
     <image
        y="599.36218"
        x="381.14285"
        id="image3047"
-       xlink:href="file:///home/user/Desktop/74HC595N.png"
+       xlink:href="file://./74HC595N.png"
        height="292"
        width="236" />
     <path
@@ -166,7 +166,7 @@
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 615.69077,28.063908 -1.56267,-57.818676 377.38406,0 0,431.296068 -107.04268,0"
+       d="m 615.69077,28.063908 37.504,-47.661341 338.31739,0 0,421.138733 -107.04268,0"
        id="path4875"
        inkscape:connector-curvature="0"
        transform="translate(0,452.36218)"
@@ -193,10 +193,11 @@
        transform="translate(0,452.36218)" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 720.38945,29.626574 0,456.298736 -401.6054,0 0,-71.88267 -50.00534,0"
+       d="m 720.38945,29.626574 0,456.298736 -313.20761,0 -59.66851,-71.88267 -78.73462,0"
        id="path4883"
        inkscape:connector-curvature="0"
-       transform="translate(0,452.36218)" />
+       transform="translate(0,452.36218)"
+       sodipodi:nodetypes="ccccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 525.05608,26.501241 0,78.133349 110.94936,0 0,139.07735 -76.57068,0"
