@@ -25,7 +25,7 @@ int step = 0;
 int led = LOW;
 int a, b;
 
-void loop() {
+void old() {
 	a = forward[step][0];
 	b = forward[step][1];
 	digitalWrite(a, HIGH);
@@ -37,4 +37,13 @@ void loop() {
 	step = (step+1) % 3;
 	led = (led+1) % 1024;
 	digitalWrite(13, led & 64);
+}
+
+void loop() {
+        digitalWrite(U_A, HIGH);
+        digitalWrite(13, HIGH);
+        delay(6000);
+        digitalWrite(U_A, LOW);
+        digitalWrite(13, LOW);
+        delay(2000);
 }
