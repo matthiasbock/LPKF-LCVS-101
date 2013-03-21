@@ -25,21 +25,26 @@ int step = 0;
 int led = LOW;
 int a, b;
 
-void old() {
+void loop() {
 	a = forward[step][0];
 	b = forward[step][1];
-	digitalWrite(a, HIGH);
-	digitalWrite(b, HIGH);
-	delay(1);
-	digitalWrite(a, LOW);
-	digitalWrite(b, LOW);
-	delay(1);
+        int i;
+        // a little PWM
+        for (i=0; i<=10; i++) {
+    	  digitalWrite(a, HIGH);
+    	  digitalWrite(b, HIGH);
+    	  delay(1);
+    	  digitalWrite(a, LOW);
+    	  digitalWrite(b, LOW);
+      	  delay(1);
+          }
 	step = (step+1) % 3;
 	led = (led+1) % 1024;
-	digitalWrite(13, led & 64);
+	digitalWrite(13, led & 8);
 }
 
-void loop() {
+/*
+void test() {
         digitalWrite(U_A, HIGH);
         digitalWrite(13, HIGH);
         delay(6000);
@@ -47,3 +52,4 @@ void loop() {
         digitalWrite(13, LOW);
         delay(2000);
 }
+*/
