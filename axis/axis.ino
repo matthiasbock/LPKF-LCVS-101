@@ -170,7 +170,7 @@ void loop() {
   setW3();
   setW4();
   setW5();
-  delay(50);
+  delay(1);
   cyclePos = (cyclePos % 20) + 1;
 }
 
