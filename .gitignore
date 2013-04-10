@@ -1,3 +1,5 @@
+*.sch~
+
 *.py[cod]
 
 # C extensions
