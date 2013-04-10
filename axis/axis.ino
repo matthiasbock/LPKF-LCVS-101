@@ -2,64 +2,62 @@
 // Arduino driver for Keyes L298 motor module/shield
 //
 
-int ENA = 53;
-int IN1 = 52;
-int IN2 = 51;
-int IN3 = 50;
-int IN4 = 49;
-int ENB = 48;
+typedef struct {
+  int ENA = 53;
+  int IN1 = 52;
+  int IN2 = 51;
+  int IN3 = 50;
+  int IN4 = 49;
+  int ENB = 48;
+  } L298;
 
-int all[7] = {13, ENA, IN1, IN2, IN3, IN4, ENB};
+L298 A,B,C,D,E;
+L298 module[5] = {A,B,C,D,E};
+
+void init(int pin) {
+  pinMode(pin, OUTPUT);
+  digitalWrite(pin, LOW);
+  }
 
 void setup() {
+  init(13); //LED
   int i;
-  for (i=0; i<7; i++) {
-    pinMode(all[i], OUTPUT);
-    digitalWrite(all[i], LOW);
+  for (i=0; i<5; i++) {
+    init(module[i].ENA);
+    init(module[i].IN1);
+    init(module[i].IN2);
+    init(module[i].IN3);
+    init(module[i].IN4);
+    init(module[i].ENB);
     }
-}
+  }
+
+int wait=1000;
+
+void TestModule(L298 module) {
+  digitalWrite(module.IN1, LOW);
+  digitalWrite(module.IN2, LOW);
+  digitalWrite(module.IN3, LOW);
+  digitalWrite(module.IN4, LOW);
+
+  digitalWrite(module.IN1, HIGH);
+  delay(wait);
+  digitalWrite(module.IN1, LOW);
+  
+  digitalWrite(module.IN2, HIGH);
+  delay(wait);
+  digitalWrite(module.IN2, LOW);
+  
+  digitalWrite(module.IN3, HIGH);
+  delay(wait);
+  digitalWrite(module.IN3, LOW);
+  
+  digitalWrite(module.IN4, HIGH);
+  delay(wait);
+  digitalWrite(module.IN4, LOW);
+  delay(wait);
+  }
 
 void loop() {
-
-  // test 1: test enable pins
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, HIGH);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, HIGH);
-
-  digitalWrite(ENA, HIGH);
-  delay(1000);
-  digitalWrite(ENA, LOW);
-  delay(1000);
-  
-  digitalWrite(ENB, HIGH);
-  delay(1000);
-  digitalWrite(ENB, LOW);
-  delay(1000);
-
-  // test 2: test input pins
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);
-  digitalWrite(ENA, HIGH);
-  digitalWrite(ENB, HIGH);
-
-  digitalWrite(IN1, HIGH);
-  delay(1000);
-  digitalWrite(IN1, LOW);
-  
-  digitalWrite(IN2, HIGH);
-  delay(1000);
-  digitalWrite(IN2, LOW);
-  
-  digitalWrite(IN3, HIGH);
-  delay(1000);
-  digitalWrite(IN3, LOW);
-  
-  digitalWrite(IN4, HIGH);
-  delay(1000);
-  digitalWrite(IN4, LOW);
-
-  delay(1000);
-}
+  TestModule(E);
+  }
