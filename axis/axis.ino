@@ -6,8 +6,8 @@
 
 L298 E;
 
-/*E.ENA = 53;
-E.IN1 = 52;
+int E.ENA=53;
+/*E.IN1 = 52;
 E.IN2 = 51;
 E.IN3 = 50;
 E.IN4 = 49;
