@@ -24,8 +24,6 @@ void initM(int m[6]) {
   for (int i=0; i<6; i++) init(m[i]);
 }
 
-int safewait=1;
-
 void setup() {
   init(13); //LED
   initM(A);
@@ -33,28 +31,39 @@ void setup() {
   initM(C);
   initM(D);
   initM(E);
-
-  digitalWrite(A[ENA], HIGH);
-  digitalWrite(A[ENA], HIGH);
-  delay(safewait);
 }
 
 void Test(int X[6]) {
-  int wait=2000;
+  int wait=100;
+
+  digitalWrite(X[IN1], LOW);
+  digitalWrite(X[IN2], LOW);
+  digitalWrite(X[IN3], LOW);
+  digitalWrite(X[IN4], LOW);
 
   digitalWrite(X[IN1], HIGH);
   delay(wait);
   digitalWrite(X[IN1], LOW);
-
-  delay(wait);
-
+  
   digitalWrite(X[IN2], HIGH);
   delay(wait);
   digitalWrite(X[IN2], LOW);
+  
+  digitalWrite(X[IN3], HIGH);
+  delay(wait);
+  digitalWrite(X[IN3], LOW);
+  
+  digitalWrite(X[IN4], HIGH);
+  delay(wait);
+  digitalWrite(X[IN4], LOW);
 
   delay(wait);
 }
 
 void loop() {
   Test(A);
+  Test(B);
+  Test(C);
+  Test(D);
+  Test(E);
 }
