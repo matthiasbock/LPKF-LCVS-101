@@ -2,83 +2,68 @@
 // Arduino driver for Keyes L298 motor module/shield
 //
 
-int A_ENA = 28;
-int A_IN1 = 29;
-int A_IN2 = 26;
-int A_IN3 = 27;
-int A_IN4 = 24;
-int A_ENB = 25;
+int ENA = 0;
+int IN1 = 1;
+int IN2 = 2;
+int IN3 = 3;
+int IN4 = 4;
+int ENB = 5;
 
-int B_ENA = 30;
-int B_IN1 = 31;
-int B_IN2 = 32;
-int B_IN3 = 33;
-int B_IN4 = 34;
-int B_ENB = 35;
-
-int C_ENA = 41;
-int C_IN1 = 40;
-int C_IN2 = 39;
-int C_IN3 = 38;
-int C_IN4 = 37;
-int C_ENB = 36;
-
-int D_ENA = 47;
-int D_IN1 = 46;
-int D_IN2 = 45;
-int D_IN3 = 44;
-int D_IN4 = 43;
-int D_ENB = 42;
-
-int E_ENA = 53;
-int E_IN1 = 52;
-int E_IN2 = 51;
-int E_IN3 = 50;
-int E_IN4 = 49;
-int E_ENB = 48;
+int A[6] = {47,46,45,44,43,42};
+int B[6] = {53,52,51,50,49,48};
+int E[6] = {28,29,26,27,24,25};
+int D[6] = {30,31,32,33,34,35};
+int C[6] = {41,40,39,38,37,36};
 
 void init(int pin) {
   pinMode(pin, OUTPUT);
   digitalWrite(pin, LOW);
-  }
+}
+
+void initM(int m[6]) {
+  for (int i=0; i<6; i++) init(m[i]);
+}
 
 void setup() {
   init(13); //LED
-  init(E.ENA);
-  init(E.IN1);
-  init(E.IN2);
-  init(E.IN3);
-  init(E.IN4);
-  init(E.ENB);
-  }
+  initM(A);
+  initM(B);
+  initM(C);
+  initM(D);
+  initM(E);
+}
 
-int wait=1000;
+void Test(int X[6]) {
+  int wait=100;
 
-void TestModule() {
-  digitalWrite(E.IN1, LOW);
-  digitalWrite(E.IN2, LOW);
-  digitalWrite(E.IN3, LOW);
-  digitalWrite(E.IN4, LOW);
+  digitalWrite(X[IN1], LOW);
+  digitalWrite(X[IN2], LOW);
+  digitalWrite(X[IN3], LOW);
+  digitalWrite(X[IN4], LOW);
 
-  digitalWrite(E.IN1, HIGH);
+  digitalWrite(X[IN1], HIGH);
   delay(wait);
-  digitalWrite(E.IN1, LOW);
+  digitalWrite(X[IN1], LOW);
   
-  digitalWrite(E.IN2, HIGH);
+  digitalWrite(X[IN2], HIGH);
   delay(wait);
-  digitalWrite(E.IN2, LOW);
+  digitalWrite(X[IN2], LOW);
   
-  digitalWrite(E.IN3, HIGH);
+  digitalWrite(X[IN3], HIGH);
   delay(wait);
-  digitalWrite(E.IN3, LOW);
+  digitalWrite(X[IN3], LOW);
   
-  digitalWrite(E.IN4, HIGH);
+  digitalWrite(X[IN4], HIGH);
   delay(wait);
-  digitalWrite(E.IN4, LOW);
+  digitalWrite(X[IN4], LOW);
+
   delay(wait);
-  }
+}
 
 void loop() {
-
-  TestModule();
-  }
+  Test(A);
+  Test(B);
+  Test(C);
+  Test(D);
+  Test(E);
+}
