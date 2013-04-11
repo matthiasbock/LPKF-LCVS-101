@@ -35,9 +35,6 @@ void init(int pin) {
 
 void initM(int m[6]) {
   for (int i=0; i<6; i++) init(m[i]);
-
-  digitalWrite(m[ENA], HIGH);
-  digitalWrite(m[ENB], HIGH);
 }
 
 void setup() {
@@ -55,12 +52,11 @@ void setW1() {
   int in1 = A[IN1];
   int in2 = A[IN2];
   if ((cyclePos == 2) || (cyclePos == 12)) { // disable
-//    digitalWrite(enable, LOW);
     digitalWrite(in1, LOW);
     digitalWrite(in2, LOW);
   }
   else if ((cyclePos > 2) && (cyclePos < 12)) { // A low, B high
-    // inactivate one first, before activating the other
+    // switch the one off before switching on the other
     digitalWrite(in2, LOW);
     digitalWrite(in1, HIGH);
   }
@@ -75,7 +71,6 @@ void setW2() {
   int in3 = A[IN3];
   int in4 = A[IN4];
   if ((cyclePos == 4) || (cyclePos == 14)) { // disable
-//    digitalWrite(enable, LOW);
     digitalWrite(in3, LOW);
     digitalWrite(in4, LOW);
   }
@@ -94,7 +89,6 @@ void setW3() {
   int in1 = B[IN1];
   int in2 = B[IN2];
   if ((cyclePos == 6) || (cyclePos == 16)) { // disable
-//    digitalWrite(enable, LOW);
     digitalWrite(in1, LOW);
     digitalWrite(in2, LOW);
   }
@@ -113,7 +107,6 @@ void setW4() {
   int in3 = B[IN3];
   int in4 = B[IN4];
   if ((cyclePos == 8) || (cyclePos == 18)) { // disable
-//    digitalWrite(enable, LOW);
     digitalWrite(in3, LOW);
     digitalWrite(in4, LOW);
   }
@@ -145,15 +138,58 @@ void setW5() {
   }
 }
 
+void writeEN(int level) {
+  digitalWrite(A[ENA], level);
+  digitalWrite(A[ENB], level);
+  digitalWrite(B[ENA], level);
+  digitalWrite(B[ENB], level);
+  digitalWrite(C[ENA], level);
+}
+
+void switchOn() {
+  writeEN(HIGH);
+}
+
+void switchOff() {
+  //writeEN(LOW);
+  // switch all LEDs off to show inactivity
+  initM(A);
+  initM(B);
+  digitalWrite(C[ENA], LOW);
+  digitalWrite(C[IN1], LOW);
+  digitalWrite(C[IN2], LOW);
+}
+
 void loop() {
-  setW1();
-  setW2();
-  setW3();
-  setW4();
-  setW5();
-  // 5000 steps/s
-  //delayMicroseconds(200);
-  delay(1);
-  cyclePos = (cyclePos % 20) + 1;
+  switchOn();
+
+  for (int i=0; i<4000; i++) {
+    setW1();
+    setW2();
+    setW3();
+    setW4();
+    setW5();
+    // 5000 steps/s
+    delayMicroseconds(500);
+    cyclePos = (cyclePos % 20) + 1;
+  }
+
+  switchOff();
+  delay(1000);
+  switchOn();
+
+  for (int i=0; i<4000; i++) {
+    setW1();
+    setW2();
+    setW3();
+    setW4();
+    setW5();
+    // 5000 steps/s
+    delayMicroseconds(500);
+    cyclePos = (cyclePos + 19) % 20;
+  }
+  
+  switchOff();
+  delay(1000);
 }
 
