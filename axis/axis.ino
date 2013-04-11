@@ -153,7 +153,7 @@ void loop() {
   setW5();
   // 5000 steps/s
   //delayMicroseconds(200);
-  delay(100);
+  delay(1);
   cyclePos = (cyclePos % 20) + 1;
 }
 
