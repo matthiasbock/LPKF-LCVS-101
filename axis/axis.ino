@@ -53,12 +53,12 @@ void setW1() {
   int enable = A[ENA];
   int x = A[IN1];
   int y = A[IN2];
-  if (cyclePos == 2 || cyclePos == 12) { // disable
+  if ((cyclePos == 2) || (cyclePos == 12)) { // disable
     digitalWrite(enable, LOW);
     digitalWrite(x, LOW);
     digitalWrite(y, LOW);
   }
-  else if (cyclePos > 2 && cyclePos < 12) { // low
+  else if ((cyclePos > 2) && (cyclePos < 12)) { // low
     digitalWrite(enable, LOW);
     digitalWrite(x, LOW);
     digitalWrite(y, HIGH);
@@ -76,12 +76,12 @@ void setW2() {
   int enable = A[ENB];
   int x = A[IN3];
   int y = A[IN4];
-  if (cyclePos == 4 || cyclePos == 14) { // disable
+  if ((cyclePos == 4) || (cyclePos == 14)) { // disable
     digitalWrite(enable, LOW);
     digitalWrite(x, LOW);
     digitalWrite(y, LOW);
   }
-  else if (cyclePos > 4 && cyclePos < 14) { // high
+  else if ((cyclePos > 4) && (cyclePos < 14)) { // high
     digitalWrite(enable, LOW);
     digitalWrite(x, HIGH);
     digitalWrite(y, LOW);
@@ -99,12 +99,12 @@ void setW3() {
   int enable = B[ENA];
   int x = B[IN1];
   int y = B[IN2];
-  if (cyclePos == 6 || cyclePos == 16) { // disable
+  if ((cyclePos == 6) || (cyclePos == 16)) { // disable
     digitalWrite(enable, LOW);
     digitalWrite(x, LOW);
     digitalWrite(y, LOW);
   }
-  else if (cyclePos > 6 && cyclePos < 16) { // low
+  else if ((cyclePos > 6) && (cyclePos < 16)) { // low
     digitalWrite(enable, LOW);
     digitalWrite(x, LOW);
     digitalWrite(y, HIGH);
@@ -122,12 +122,12 @@ void setW4() {
   int enable = B[ENB];
   int x = B[IN3];
   int y = B[IN4];
-  if (cyclePos == 8 || cyclePos == 18) { // disable
+  if ((cyclePos == 8) || (cyclePos == 18)) { // disable
     digitalWrite(enable, LOW);
     digitalWrite(x, LOW);
     digitalWrite(y, LOW);
   }
-  else if (cyclePos > 8 && cyclePos < 18) { // high
+  else if ((cyclePos > 8) && (cyclePos < 18)) { // high
     digitalWrite(enable, LOW);
     digitalWrite(x, HIGH);
     digitalWrite(y, LOW);
@@ -145,12 +145,12 @@ void setW5() {
   int enable = C[ENA];
   int x = C[IN1];
   int y = C[IN2];
-  if (cyclePos == 10 || cyclePos == 20) { // disable
+  if ((cyclePos == 10) || (cyclePos == 20)) { // disable
     digitalWrite(enable, LOW);
     digitalWrite(x, LOW);
     digitalWrite(y, LOW);
   }
-  else if (cyclePos > 10 && cyclePos < 20) { // low
+  else if ((cyclePos > 10) && (cyclePos < 20)) { // low
     digitalWrite(enable, LOW);
     digitalWrite(x, LOW);
     digitalWrite(y, HIGH);
@@ -170,6 +170,8 @@ void loop() {
   setW3();
   setW4();
   setW5();
+  // 5000 steps/s
+  //delayMicroseconds(200);
   delay(1);
   cyclePos = (cyclePos % 20) + 1;
 }
