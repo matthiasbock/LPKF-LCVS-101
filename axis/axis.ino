@@ -30,14 +30,15 @@ violet  = C_MotorA2;
 
 void init(int pin) {
   pinMode(pin, OUTPUT);
-  digitalWrite(pin, HIGH);
+  digitalWrite(pin, LOW);
 }
 
 void initM(int m[6]) {
   for (int i=0; i<6; i++) init(m[i]);
-}
 
-int safewait=1;
+  digitalWrite(m[ENA], HIGH);
+  digitalWrite(m[ENB], HIGH);
+}
 
 void setup() {
   initM(A);
@@ -152,7 +153,7 @@ void loop() {
   setW5();
   // 5000 steps/s
   //delayMicroseconds(200);
-  delay(1000);
+  delay(100);
   cyclePos = (cyclePos % 20) + 1;
 }
 
