@@ -30,7 +30,7 @@ violet  = C_MotorA2;
 
 void init(int pin) {
   pinMode(pin, OUTPUT);
-  digitalWrite(pin, LOW);
+  digitalWrite(pin, HIGH);
 }
 
 void initM(int m[6]) {
@@ -51,116 +51,96 @@ int cyclePos = 1;
 
 void setW1() {
   int enable = A[ENA];
-  int x = A[IN1];
-  int y = A[IN2];
+  int in1 = A[IN1];
+  int in2 = A[IN2];
   if ((cyclePos == 2) || (cyclePos == 12)) { // disable
-    digitalWrite(enable, LOW);
-    digitalWrite(x, LOW);
-    digitalWrite(y, LOW);
+//    digitalWrite(enable, LOW);
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);
   }
-  else if ((cyclePos > 2) && (cyclePos < 12)) { // low
-    digitalWrite(enable, LOW);
-    digitalWrite(x, LOW);
-    digitalWrite(y, HIGH);
-    digitalWrite(enable, HIGH);
+  else if ((cyclePos > 2) && (cyclePos < 12)) { // A low, B high
+    // inactivate one first, before activating the other
+    digitalWrite(in2, LOW);
+    digitalWrite(in1, HIGH);
   }
-  else { // high
-    digitalWrite(enable, LOW);
-    digitalWrite(x, HIGH);
-    digitalWrite(y, LOW);
-    digitalWrite(enable, HIGH);
+  else { // A high, B low
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
   }
 }
 
 void setW2() {
   int enable = A[ENB];
-  int x = A[IN3];
-  int y = A[IN4];
+  int in3 = A[IN3];
+  int in4 = A[IN4];
   if ((cyclePos == 4) || (cyclePos == 14)) { // disable
-    digitalWrite(enable, LOW);
-    digitalWrite(x, LOW);
-    digitalWrite(y, LOW);
+//    digitalWrite(enable, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, LOW);
   }
-  else if ((cyclePos > 4) && (cyclePos < 14)) { // high
-    digitalWrite(enable, LOW);
-    digitalWrite(x, HIGH);
-    digitalWrite(y, LOW);
-    digitalWrite(enable, HIGH);
+  else if ((cyclePos > 4) && (cyclePos < 14)) { // C high, D low
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
   }
-  else { // low
-    digitalWrite(enable, LOW);
-    digitalWrite(x, LOW);
-    digitalWrite(y, HIGH);
-    digitalWrite(enable, HIGH);
+  else { // C low, D high
+    digitalWrite(in4, LOW);
+    digitalWrite(in3, HIGH);
   }
 }
 
 void setW3() {
   int enable = B[ENA];
-  int x = B[IN1];
-  int y = B[IN2];
+  int in1 = B[IN1];
+  int in2 = B[IN2];
   if ((cyclePos == 6) || (cyclePos == 16)) { // disable
-    digitalWrite(enable, LOW);
-    digitalWrite(x, LOW);
-    digitalWrite(y, LOW);
+//    digitalWrite(enable, LOW);
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);
   }
-  else if ((cyclePos > 6) && (cyclePos < 16)) { // low
-    digitalWrite(enable, LOW);
-    digitalWrite(x, LOW);
-    digitalWrite(y, HIGH);
-    digitalWrite(enable, HIGH);
+  else if ((cyclePos > 6) && (cyclePos < 16)) { // E low, F high
+    digitalWrite(in2, LOW);
+    digitalWrite(in1, HIGH);
   }
-  else { // high
-    digitalWrite(enable, LOW);
-    digitalWrite(x, HIGH);
-    digitalWrite(y, LOW);
-    digitalWrite(enable, HIGH);
+  else { // E high, F low
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
   }
 }
 
 void setW4() {
   int enable = B[ENB];
-  int x = B[IN3];
-  int y = B[IN4];
+  int in3 = B[IN3];
+  int in4 = B[IN4];
   if ((cyclePos == 8) || (cyclePos == 18)) { // disable
-    digitalWrite(enable, LOW);
-    digitalWrite(x, LOW);
-    digitalWrite(y, LOW);
+//    digitalWrite(enable, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, LOW);
   }
-  else if ((cyclePos > 8) && (cyclePos < 18)) { // high
-    digitalWrite(enable, LOW);
-    digitalWrite(x, HIGH);
-    digitalWrite(y, LOW);
-    digitalWrite(enable, HIGH);
+  else if ((cyclePos > 8) && (cyclePos < 18)) { // G high, H low
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
   }
-  else { // low
-    digitalWrite(enable, LOW);
-    digitalWrite(x, LOW);
-    digitalWrite(y, HIGH);
-    digitalWrite(enable, HIGH);
+  else { // G low, H high
+    digitalWrite(in4, LOW);
+    digitalWrite(in3, HIGH);
   }
 }
 
 void setW5() {
   int enable = C[ENA];
-  int x = C[IN1];
-  int y = C[IN2];
+  int in1 = C[IN1];
+  int in2 = C[IN2];
   if ((cyclePos == 10) || (cyclePos == 20)) { // disable
-    digitalWrite(enable, LOW);
-    digitalWrite(x, LOW);
-    digitalWrite(y, LOW);
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);
   }
-  else if ((cyclePos > 10) && (cyclePos < 20)) { // low
-    digitalWrite(enable, LOW);
-    digitalWrite(x, LOW);
-    digitalWrite(y, HIGH);
-    digitalWrite(enable, HIGH);
+  else if ((cyclePos > 10) && (cyclePos < 20)) { // J low, K high
+    digitalWrite(in2, LOW);
+    digitalWrite(in1, HIGH);
   }
   else { // high
-    digitalWrite(enable, LOW);
-    digitalWrite(x, HIGH);
-    digitalWrite(y, LOW);
-    digitalWrite(enable, HIGH);
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
   }
 }
 
@@ -172,7 +152,7 @@ void loop() {
   setW5();
   // 5000 steps/s
   //delayMicroseconds(200);
-  delay(1);
+  delay(1000);
   cyclePos = (cyclePos % 20) + 1;
 }
 
