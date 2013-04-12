@@ -159,24 +159,43 @@ void switchXoff() {
 // drive a little forth and back
 void loop() {
   switchXon();
-
   for (int i=0; i<6000; i++) {
     updateXsWs();
     delayMicroseconds(400);
     cyclePos = (cyclePos % 20) + 1;
   }
-
   switchXoff();
-  delay(1000);
-  switchXon();
 
+  delay(1000);
+
+  switchYon();
+  for (int i=0; i<6000; i++) {
+    updateYsWs();
+    delayMicroseconds(400);
+    cyclePos = (cyclePos % 20) + 1;
+  }
+  switchYoff();
+  
+  delay(1000);
+
+  switchXon();
   for (int i=0; i<6000; i++) {
     updateXsWs();
     delayMicroseconds(400);
     cyclePos = (cyclePos + 19) % 20;
-  }
-  
+  }  
   switchXoff();
+
+  delay(1000);
+
+  switchYon();
+  for (int i=0; i<6000; i++) {
+    updateYsWs();
+    delayMicroseconds(400);
+    cyclePos = (cyclePos + 19) % 20;
+  }
+  switchYoff();
+
   delay(1000);
 }
 
