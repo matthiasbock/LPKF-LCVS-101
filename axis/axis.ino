@@ -129,27 +129,54 @@ void switchYoff() {
   digitalWrite(C[IN2], LOW);
 }
 
+void updateXsWs() {
+  setWlow(  C[IN3], C[IN4], 2, 12 );
+  setWhigh( D[IN1], D[IN2], 4, 14 );
+  setWlow(  D[IN3], D[IN4], 6, 16 );
+  setWhigh( E[IN1], E[IN2], 8, 18 );
+  setWlow(  E[IN3], E[IN4], 10, 20 );
+}
+
+// enable power for X axis motor control pins
+void switchXon() {
+  digitalWrite(C[ENB], HIGH);
+  digitalWrite(D[ENA], HIGH);
+  digitalWrite(D[ENB], HIGH);
+  digitalWrite(E[ENA], HIGH);
+  digitalWrite(E[ENB], HIGH);
+}
+
+// disable power for X axis motor control pins
+void switchXoff() {
+  // also switch all LEDs off to show shutdown
+  digitalWrite(C[IN3], LOW);
+  digitalWrite(C[IN4], LOW);
+  digitalWrite(C[ENB], LOW);
+  initModule(D);
+  initModule(E);
+}
+
 // drive a little forth and back
 void loop() {
-  switchYon();
+  switchXon();
 
-  for (int i=0; i<4000; i++) {
-    updateYsWs();
-    delayMicroseconds(600);
+  for (int i=0; i<6000; i++) {
+    updateXsWs();
+    delayMicroseconds(400);
     cyclePos = (cyclePos % 20) + 1;
   }
 
-  switchYoff();
+  switchXoff();
   delay(1000);
-  switchYon();
+  switchXon();
 
-  for (int i=0; i<4000; i++) {
-    updateYsWs();
-    delayMicroseconds(600);
+  for (int i=0; i<6000; i++) {
+    updateXsWs();
+    delayMicroseconds(400);
     cyclePos = (cyclePos + 19) % 20;
   }
   
-  switchYoff();
+  switchXoff();
   delay(1000);
 }
 
