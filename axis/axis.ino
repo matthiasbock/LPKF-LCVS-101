@@ -135,7 +135,7 @@ void loop() {
 
   for (int i=0; i<4000; i++) {
     updateYsWs();
-    delayMicroseconds(500);
+    delayMicroseconds(600);
     cyclePos = (cyclePos % 20) + 1;
   }
 
@@ -145,7 +145,7 @@ void loop() {
 
   for (int i=0; i<4000; i++) {
     updateYsWs();
-    delayMicroseconds(500);
+    delayMicroseconds(600);
     cyclePos = (cyclePos + 19) % 20;
   }
   
