@@ -20,64 +20,37 @@ void setup() {
         }
 }
 
-int forward[3][2] = { {U_A, V_B}, {V_A, W_B}, {W_A, U_B} };
-int step = 0;
+//int forward[3][2] = { {U_A, V_B}, {V_A, W_B}, {W_A, U_B} };
 int led = LOW;
-//int a, b;
 
-/*
-void test2() {
-	a = forward[step][0];
-	b = forward[step][1];
-        int i;
-        // a little PWM
-        for (i=0; i<=20; i++) {
-    	  digitalWrite(a, HIGH);
-    	  digitalWrite(b, HIGH);
-    	  delay(2);
-    	  digitalWrite(a, LOW);
-    	  digitalWrite(b, LOW);
-      	  delay(1);
-          }
-	step = (step+1) % 3;
-	led = (led+1) % 1024;
-	digitalWrite(13, led & 8);
-}
-*/
-
-/*
-void test() {
-        digitalWrite(U_A, HIGH);
-        digitalWrite(13, HIGH);
-        delay(6000);
-        digitalWrite(U_A, LOW);
-        digitalWrite(13, LOW);
-        delay(2000);
-}
-*/
-
-int a = 3;
-int b = 3;
+int a = 1;
+int b = 1;
 
 void loop() {
-    	  digitalWrite(U_A, HIGH);
-    	  digitalWrite(V_B, HIGH);
-    	  delay(a);
-    	  digitalWrite(U_A, LOW);
-    	  digitalWrite(V_B, LOW);
-    	  delay(b);
-    	  digitalWrite(V_A, HIGH);
-    	  digitalWrite(W_B, HIGH);
-    	  delay(a);
-    	  digitalWrite(V_A, LOW);
-    	  digitalWrite(W_B, LOW);
-    	  delay(b);
-    	  digitalWrite(W_A, HIGH);
-    	  digitalWrite(U_B, HIGH);
-    	  delay(a);
-    	  digitalWrite(W_A, LOW);
-    	  digitalWrite(U_B, LOW);
-    	  delay(b);
-	led = (led+1) % 1024;
-	digitalWrite(13, led & 8);
+  // A B B
+  digitalWrite(U_A, HIGH); 
+  digitalWrite(W_B, HIGH);
+  delay(a);
+  digitalWrite(U_A, LOW);
+  digitalWrite(V_B, LOW);
+  delay(b);
+  
+  // B A B
+  digitalWrite(U_B, HIGH);
+  digitalWrite(V_A, HIGH);
+  delay(a);
+  digitalWrite(V_A, LOW);
+  digitalWrite(W_B, LOW);
+  delay(b);
+  
+  // B B A
+  digitalWrite(V_B, HIGH);
+  digitalWrite(W_A, HIGH);
+  delay(a);
+  digitalWrite(W_A, LOW);
+  digitalWrite(U_B, LOW);
+  delay(b);
+  
+  led = (led+1) % 1024;
+  digitalWrite(13, led & 8);
 }
