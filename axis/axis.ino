@@ -71,12 +71,14 @@ int cyclePos = 1;
   found in Berger-Lahr's 5-phase stepping motor datasheet.
 */
 
-void setWlow(int in1, int in2, int lowDisable, int highDisable) {
+void setWlow(int in1, int in2, int lowDisable, int highDisable, boolean inbetweenEnabled) {
   if ((cyclePos == lowDisable) || (cyclePos == highDisable)) { // disable
     digitalWrite(in1, LOW);
     digitalWrite(in2, LOW);
   }
-  else if ((cyclePos > lowDisable) && (cyclePos < highDisable)) { // A low, B high
+  else if (not inbetweenEnabled)
+  {
+   if ((cyclePos > lowDisable) && (cyclePos < highDisable)) { // A low, B high
     // switch the one off before switching the other on
     digitalWrite(in2, LOW);
     digitalWrite(in1, HIGH);
@@ -85,29 +87,41 @@ void setWlow(int in1, int in2, int lowDisable, int highDisable) {
     digitalWrite(in1, LOW);
     digitalWrite(in2, HIGH);
   }
-}
-
-void setWhigh(int in3, int in4, int lowDisable, int highDisable) {
-  if ((cyclePos == lowDisable) || (cyclePos == highDisable)) { // disable
-    digitalWrite(in3, LOW);
-    digitalWrite(in4, LOW);
   }
-  else if ((cyclePos > lowDisable) && (cyclePos < highDisable)) { // C high, D low
-    digitalWrite(in3, LOW);
-    digitalWrite(in4, HIGH);
+  else // highDisable < lowDisable
+  {
+   if ((cyclePos > lowDisable) && (cyclePos < highDisable)) { // C high, D low
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
   }
   else { // C low, D high
-    digitalWrite(in4, LOW);
-    digitalWrite(in3, HIGH);
+    digitalWrite(in2, LOW);
+    digitalWrite(in1, HIGH);
+  }
+  }
+}
+
+void setWhigh(int in1, int in2, int lowDisable, int highDisable) {
+  if ((cyclePos == lowDisable) || (cyclePos == highDisable)) { // disable
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);
+  }
+  else if ((cyclePos > lowDisable) && (cyclePos < highDisable)) { // C high, D low
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+  }
+  else { // C low, D high
+    digitalWrite(in2, LOW);
+    digitalWrite(in1, HIGH);
   }
 }
 
 void updateYsWs() {
-  setWlow(  A[IN1], A[IN2], 2, 12 );
-  setWhigh( A[IN3], A[IN4], 4, 14 );
-  setWlow(  B[IN1], B[IN2], 6, 16 );
-  setWhigh( B[IN3], B[IN4], 8, 18 );
-  setWlow(  C[IN1], C[IN2], 10, 20 );  
+  setWlow(  A[IN1], A[IN2], 2, 12, false );
+  setWlow( A[IN3], A[IN4], 4, 14, true );
+  setWlow(  B[IN1], B[IN2], 6, 16, false );
+  setWlow( B[IN3], B[IN4], 8, 18, true );
+  setWlow(  C[IN1], C[IN2], 10, 20, false );  
 }
 
 // enable power for Y axis motor control pins
@@ -130,11 +144,11 @@ void switchYoff() {
 }
 
 void updateXsWs() {
-  setWlow(  C[IN3], C[IN4], 2, 12 );
+  setWlow(  C[IN3], C[IN4], 2, 12, false );
   setWhigh( D[IN1], D[IN2], 4, 14 );
-  setWlow(  D[IN3], D[IN4], 6, 16 );
+  setWlow(  D[IN3], D[IN4], 6, 16, false );
   setWhigh( E[IN1], E[IN2], 8, 18 );
-  setWlow(  E[IN3], E[IN4], 10, 20 );
+  setWlow(  E[IN3], E[IN4], 10, 20, false );
 }
 
 // enable power for X axis motor control pins
