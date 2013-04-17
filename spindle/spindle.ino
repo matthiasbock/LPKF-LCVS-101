@@ -4,15 +4,18 @@
 // Alfred Jager 33-1 W02
 //
 
-#define V_A 31
-#define V_B 33
-#define W_A 37
-#define W_B 39
-#define U_A 43
-#define U_B 45
+#define U_plus 31
+#define U_minus 33
+
+#define V_plus 37
+#define V_minus 39
+
+#define W_plus 43
+#define W_minus 45
+//int forward[3][2] = { {U_plus, V_minus}, {V_plus, W_minus}, {W_plus, U_minus} };
 
 void setup() {
-        int pins[7] = {13, U_A, U_B, V_A, V_B, W_A, W_B};
+        int pins[7] = {13, U_plus, U_minus, V_plus, V_minus, W_plus, W_minus};
         int i;
         for (i=0; i<=7; i++)  {
 		pinMode(pins[i], OUTPUT);
@@ -20,37 +23,32 @@ void setup() {
         }
 }
 
-//int forward[3][2] = { {U_A, V_B}, {V_A, W_B}, {W_A, U_B} };
-int led = LOW;
+void OnOff(int pinPlus, int pinMinus, int waitHigh, int waitRecover) {
+  digitalWrite(pinPlus, HIGH); 
+  digitalWrite(pinMinus, HIGH);
+  digitalWrite(13, HIGH);
+  delay(waitHigh);
+  digitalWrite(pinPlus, LOW);
+  digitalWrite(pinMinus, LOW);
+  digitalWrite(13, LOW);
+  delay(waitRecover);
+}
 
-int a = 1;
-int b = 1;
+int led = 0;
+int a = 2000;
+int b = 2000;
 
 void loop() {
-  // A B B
-  digitalWrite(U_A, HIGH); 
-  digitalWrite(W_B, HIGH);
-  delay(a);
-  digitalWrite(U_A, LOW);
-  digitalWrite(V_B, LOW);
-  delay(b);
+  // U-V
+  OnOff(U_plus, W_minus, a, b);
   
-  // B A B
-  digitalWrite(U_B, HIGH);
-  digitalWrite(V_A, HIGH);
-  delay(a);
-  digitalWrite(V_A, LOW);
-  digitalWrite(W_B, LOW);
-  delay(b);
+  // V-W
+  //OnOff(V_plus, W_minus, a, b);
   
-  // B B A
-  digitalWrite(V_B, HIGH);
-  digitalWrite(W_A, HIGH);
-  delay(a);
-  digitalWrite(W_A, LOW);
-  digitalWrite(U_B, LOW);
-  delay(b);
-  
-  led = (led+1) % 1024;
-  digitalWrite(13, led & 8);
+  // W-U
+  //OnOff(W_plus, U_minus, a, b);
+
+  // blink  
+//  led = (led+1) % 1024;
+//  digitalWrite(13, led & 16);
 }
