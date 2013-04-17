@@ -5,18 +5,22 @@
 //
 
 // pins
-#define U_plus 31
-#define U_minus 33
-#define V_plus 37
-#define V_minus 39
-#define W_plus 43
-#define W_minus 45
+#define U_plus  2
+#define U_minus 3
+#define V_plus  4
+#define V_minus 5
+#define W_plus  6
+#define W_minus 7
 
 #define U 0
 #define V 1
 #define W 2
 #define plus 0
 #define minus 1
+
+// PWM
+//#define LOW 0
+//#define HIGH 1
 
 int channel[3][2] = { {U_plus, U_minus}, {V_plus, V_minus}, {W_plus, W_minus} };
 
@@ -29,8 +33,16 @@ void setup() {
         }
 }
 
-int waitHigh = 5;
-int waitRecover = 1;
+// waitHigh: microseconds
+// how long to apply power during one step
+int waitHigh = 2000;
+
+// waitRecover: microseconds
+// required to avoid short-circuit, since
+// FET needs about 50 microseconds to lock
+int waitRecover = 50;
+
+int led = 0;
 
 void setChannel(int ch, int level) {
   int p = channel[ch][plus];
@@ -47,23 +59,37 @@ void setChannel(int ch, int level) {
   }
 }
 
-int led = 0;
+void spin() {
+  setChannel(U, LOW);
+  delayMicroseconds(waitHigh);
+  setChannel(V, HIGH);
+  delayMicroseconds(waitHigh);
+  setChannel(W, LOW);
+  delayMicroseconds(waitHigh);
+  setChannel(U, HIGH);
+  delayMicroseconds(waitHigh);
+  setChannel(V, LOW);
+  delayMicroseconds(waitHigh);
+  setChannel(W, HIGH);
+  delayMicroseconds(waitHigh);
+}
+
+// start with one rotation per second
+int rpm = 60;
+int final_rpm = 1000;
+int rpm_inc = 60;
 
 void loop() {
-  setChannel(U, LOW);
-  delay(waitHigh);
-  setChannel(V, HIGH);
-  delay(waitHigh);
-  setChannel(W, LOW);
-  delay(waitHigh);
-  setChannel(U, HIGH);
-  delay(waitHigh);
-  setChannel(V, LOW);
-  delay(waitHigh);
-  setChannel(W, HIGH);
-  delay(waitHigh);
+  float rps = rpm/60;
+  waitHigh = 1000000*((1/rps)/6.0);
+ 
+  spin();
 
+  if (rpm < final_rpm) {
+    rpm = rpm+rpm_inc;
+  }
+  
   // blink  
   led = (led+1) % 1024;
-  digitalWrite(13, led & 16);
+  digitalWrite(13, led & 2);
 }
