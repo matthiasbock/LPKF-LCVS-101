@@ -1,5 +1,5 @@
     
-#define magnet 8
+#define magnet 52
 
 void setup() {
 	pinMode(13, OUTPUT);

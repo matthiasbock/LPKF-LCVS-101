@@ -5,12 +5,12 @@
 //
 
 // pins
-#define U_plus  2
-#define U_minus 3
-#define V_plus  4
-#define V_minus 5
-#define W_plus  6
-#define W_minus 7
+#define U_plus  22
+#define U_minus 24
+#define V_plus  26
+#define V_minus 28
+#define W_plus  30
+#define W_minus 32
 
 #define U 0
 #define V 1
@@ -71,10 +71,10 @@ void spin() {
 }
 
 void loop() {
-  if (waitStep > 1800)
-    waitStep -= 50;
+  if (waitStep > 1500)
+    waitStep -= 1;
   else
-    waitStep = 1800;
+    waitStep = 1500;
  
   spin();
   
