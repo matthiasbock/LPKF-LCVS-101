@@ -3,6 +3,11 @@
 // using Keyes L298N motor modules/shields
 //
 
+#define Xmin 3
+#define Xmax 2
+#define Ymin 22
+#define Ymax 23
+
 /*
 Y axis stepper motor:
 
@@ -60,6 +65,11 @@ void initModule(int m[6]) {
 }
 
 void setup() {
+  initPin(13);
+  pinMode(Xmin, INPUT);
+  pinMode(Xmax, INPUT);
+  pinMode(Ymin, INPUT);
+  pinMode(Ymax, INPUT);
   initModule(A);
   initModule(B);
   initModule(C);
@@ -164,8 +174,10 @@ void updateX(int stepX) {
 
 int cyclePos = 1;
 
-// drive a little forth and back
+// drive a little back and forth
+
 void loop() {
+
   switchXon();
   for (int i=0; i<6000; i++) {
     updateX(cyclePos);
@@ -207,3 +219,49 @@ void loop() {
   delay(1000);
 }
 
+/*
+int led = 13;
+
+// test min/max switches
+void loop() {
+  if (digitalRead(Xmin) == HIGH) {
+    digitalWrite(led, HIGH);
+  }
+  else if (digitalRead(Xmax) == HIGH) {
+    digitalWrite(led, HIGH);
+    delay(100);
+    digitalWrite(led, LOW);
+    delay(100);
+    digitalWrite(led, HIGH);
+  }
+  else if (digitalRead(Ymin) == HIGH) {
+    digitalWrite(led, HIGH);
+    delay(100);
+    digitalWrite(led, LOW);
+    delay(100);
+    digitalWrite(led, HIGH);
+    delay(100);
+    digitalWrite(led, LOW);
+    delay(100);
+    digitalWrite(led, HIGH);
+  }
+  else if (digitalRead(Ymax) == HIGH) {
+    digitalWrite(led, HIGH);
+    delay(100);
+    digitalWrite(led, LOW);
+    delay(100);
+    digitalWrite(led, HIGH);
+    delay(100);
+    digitalWrite(led, LOW);
+    delay(100);
+    digitalWrite(led, HIGH);
+    delay(100);
+    digitalWrite(led, LOW);
+    delay(100);
+    digitalWrite(led, HIGH);
+  }
+  delay(100);
+  digitalWrite(led, LOW);
+  delay(1000);
+}
+*/
