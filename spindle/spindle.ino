@@ -29,16 +29,30 @@ void setup() {
         }
 }
 
-// waitStep: microseconds
-// how long to apply power during a step
-int waitStep = 6000;
+
+// program runtime in microseconds
+long runtime = 0;
+#define sec 1000000
+
+// delayStep: microseconds
+// function: how long to apply power during a step
+void delayStep() {
+  // 6000 for 2 sec
+  int wait = 1800;
+ 
+  if (runtime < 3*sec) {
+    wait = 6000;
+  }
+  else if (runtime < 6*sec) {
+    wait = 3000;
+  }
+  delayMicroseconds(wait);
+  runtime += wait;
+};
+
 
 // waitFETLock: microseconds
-// required to avoid short-circuit, since
-// FET needs about 50 microseconds to lock
-int waitFETLock = 60;
-
-int led = 0;
+int waitFETLock = 1;
 
 void setChannel(int ch, int level) {
   int p = channel[ch][plus];
@@ -46,38 +60,38 @@ void setChannel(int ch, int level) {
   if (level == HIGH) { // connect channel to positive voltage
     digitalWrite(m, LOW);
     delayMicroseconds(waitFETLock);
+    runtime += waitFETLock;
     digitalWrite(p, HIGH);
   }
   else { // connect channel to ground
     digitalWrite(p, LOW);
     delayMicroseconds(waitFETLock);
+    runtime += waitFETLock;
     digitalWrite(m, HIGH);
   }
 }
 
+
 void spin() {
   setChannel(U, LOW);
-  delayMicroseconds(waitStep);
+  delayStep();
   setChannel(V, HIGH);
-  delayMicroseconds(waitStep);
+  delayStep();
   setChannel(W, LOW);
-  delayMicroseconds(waitStep);
+  delayStep();
   setChannel(U, HIGH);
-  delayMicroseconds(waitStep);
+  delayStep();
   setChannel(V, LOW);
-  delayMicroseconds(waitStep);
+  delayStep();
   setChannel(W, HIGH);
-  delayMicroseconds(waitStep);
+  delayStep();
 }
 
+
+int led = 0;
+
 void loop() {
-  if (waitStep > 1500)
-    waitStep -= 1;
-  else
-    waitStep = 1500;
- 
   spin();
-  
   // blink  
   led = (led+1) % 1024;
   digitalWrite(13, led & 2);
