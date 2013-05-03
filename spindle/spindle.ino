@@ -36,18 +36,20 @@ long runtime = 0;
 
 // delayStep: microseconds
 // function: how long to apply power during a step
-void delayStep() {
-  // 6000 for 2 sec
-  int wait = 1800;
- 
-  if (runtime < 3*sec) {
+void delayStep() { 
+  int wait = 1600;
+  if (runtime < 1*sec) {
     wait = 6000;
   }
-  else if (runtime < 6*sec) {
+  else if (runtime < 2*sec) {
     wait = 3000;
   }
+  else if (runtime < 4*sec) {
+    wait = 1800;
+  }
   delayMicroseconds(wait);
-  runtime += wait;
+  if (runtime < 10*sec)
+    runtime += wait;
 };
 
 
