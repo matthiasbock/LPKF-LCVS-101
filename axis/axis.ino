@@ -178,43 +178,55 @@ void updateX(int stepX) {
 
 int cyclePos = 1;
 
-// drive a little back and forth
-void testBackAndForth() {
-
+void moveRight(int steps) {
   switchXon();
-  for (int i=0; i<6000; i++) {
+  for (int i=0; i<steps; i++) {
     updateX(cyclePos);
     delayMicroseconds(400);
     cyclePos = (cyclePos % 20) + 1;
   }
   switchXoff();
-  delay(1000);
+}
 
-  switchYon();
-  for (int i=0; i<6000; i++) {
-    updateY(cyclePos);
-    delayMicroseconds(400);
-    cyclePos = (cyclePos % 20) + 1;
-  }
-  switchYoff();
-  delay(1000);
-
+void moveLeft(int steps) {
   switchXon();
-  for (int i=0; i<6000; i++) {
+  for (int i=0; i<steps; i++) {
     updateX(cyclePos);
     delayMicroseconds(400);
     cyclePos = (cyclePos + 19) % 20;
   }  
   switchXoff();
-  delay(1000);
+}
 
+void moveUp(int steps) {
   switchYon();
-  for (int i=0; i<6000; i++) {
+  for (int i=0; i<steps; i++) {
+    updateY(cyclePos);
+    delayMicroseconds(400);
+    cyclePos = (cyclePos % 20) + 1;
+  }
+  switchYoff();
+}
+
+void moveDown(int steps) {
+  switchYon();
+  for (int i=0; i<steps; i++) {
     updateY(cyclePos);
     delayMicroseconds(400);
     cyclePos = (cyclePos + 19) % 20;
   }
   switchYoff();
+}
+
+// drive a little back and forth
+void testBackAndForth() {
+  moveRight(6000);
+  delay(1000);
+  moveUp(6000);
+  delay(1000);
+  moveLeft(6000);
+  delay(1000);
+  moveDown(6000);
   delay(1000);
 }
 
@@ -245,23 +257,16 @@ void testMinMaxSwitches() {
   }
 }
 
-// let's see if we can make the movement dependent on serial input
-void testRemoteControl() {
-  // e.g.
-  // G01 X40. Y40. Z40.;
-}
-
-int i=0;
-char commandbuffer[100];
-
 void loop() {
 
   if(Serial.available()){
-     while( Serial.available() && i<99 ) {
-        commandbuffer[i++] = Serial.read();
-     }
-     commandbuffer[i++]='\0';
-     Serial.println((char*)commandbuffer);
+    char c = Serial.read();
+    if (c == 'X') {
+      digitalWrite(13, HIGH);
+    }
+    else if (c == 'x') {
+      digitalWrite(13, LOW);
+    }
   }
 
   delay(100);
