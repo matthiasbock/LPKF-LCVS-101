@@ -259,13 +259,19 @@ void testMinMaxSwitches() {
 
 void loop() {
 
-  if(Serial.available()){
+  while (Serial.available()) {
     char c = Serial.read();
     if (c == 'X') {
-      digitalWrite(13, HIGH);
+      moveRight(1000);
     }
     else if (c == 'x') {
-      digitalWrite(13, LOW);
+      moveLeft(1000);
+    }
+    else if (c == 'y') {
+      moveDown(1000);
+    }
+    else if (c == 'Y') {
+      moveUp(1000);
     }
   }
 
