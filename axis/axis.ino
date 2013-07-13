@@ -41,12 +41,12 @@ For C to be high (D low), pin3 is low, pin4 high.
 */
 
 
-      int ENA = 0;
-        int IN1 = 1;
-          int IN2 = 2;
-            int IN3 = 3;
-              int IN4 = 4;
-                int ENB = 5;
+#define ENA 0
+   #define IN1 1
+      #define IN2 2
+         #define IN3 3
+            #define IN4 4
+               #define ENB 5
 
 // pins at which the five L298 modules are connected to the Arduino
 int A[6] = {47,46,45,44,43,42};
@@ -61,7 +61,8 @@ void initPin(int pin) {
 }
 
 void initModule(int m[6]) {
-  for (int i=0; i<6; i++) initPin(m[i]);
+  for (int i=0; i<6; i++)
+    initPin(m[i]);
 }
 
 void setup() {
@@ -175,8 +176,7 @@ void updateX(int stepX) {
 int cyclePos = 1;
 
 // drive a little back and forth
-
-void loop() {
+void testBackAndForth() {
 
   switchXon();
   for (int i=0; i<6000; i++) {
@@ -185,7 +185,6 @@ void loop() {
     cyclePos = (cyclePos % 20) + 1;
   }
   switchXoff();
-
   delay(1000);
 
   switchYon();
@@ -195,7 +194,6 @@ void loop() {
     cyclePos = (cyclePos % 20) + 1;
   }
   switchYoff();
-  
   delay(1000);
 
   switchXon();
@@ -205,7 +203,6 @@ void loop() {
     cyclePos = (cyclePos + 19) % 20;
   }  
   switchXoff();
-
   delay(1000);
 
   switchYon();
@@ -215,53 +212,37 @@ void loop() {
     cyclePos = (cyclePos + 19) % 20;
   }
   switchYoff();
-
   delay(1000);
 }
 
-/*
-int led = 13;
+#define led 13
+
+void blink(n) {
+  for (int i=0; i<n; i++) {
+    digitalWrite(led, HIGH);
+    delay(100);
+    digitalWrite(led, LOW);
+    delay(100);
+  }
+}
 
 // test min/max switches
-void loop() {
+void testMinMaxSwitches() {
   if (digitalRead(Xmin) == HIGH) {
-    digitalWrite(led, HIGH);
+    blink(1);
   }
   else if (digitalRead(Xmax) == HIGH) {
-    digitalWrite(led, HIGH);
-    delay(100);
-    digitalWrite(led, LOW);
-    delay(100);
-    digitalWrite(led, HIGH);
+    blink(2);
   }
   else if (digitalRead(Ymin) == HIGH) {
-    digitalWrite(led, HIGH);
-    delay(100);
-    digitalWrite(led, LOW);
-    delay(100);
-    digitalWrite(led, HIGH);
-    delay(100);
-    digitalWrite(led, LOW);
-    delay(100);
-    digitalWrite(led, HIGH);
+    blink(3);
   }
   else if (digitalRead(Ymax) == HIGH) {
-    digitalWrite(led, HIGH);
-    delay(100);
-    digitalWrite(led, LOW);
-    delay(100);
-    digitalWrite(led, HIGH);
-    delay(100);
-    digitalWrite(led, LOW);
-    delay(100);
-    digitalWrite(led, HIGH);
-    delay(100);
-    digitalWrite(led, LOW);
-    delay(100);
-    digitalWrite(led, HIGH);
+    blink(4);
   }
-  delay(100);
-  digitalWrite(led, LOW);
-  delay(1000);
 }
-*/
+
+void loop() {
+  testBackAndForth();
+}
+
