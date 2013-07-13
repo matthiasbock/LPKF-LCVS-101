@@ -258,10 +258,30 @@ void testMinMaxSwitches() {
 }
 
 void loop() {
-
-  while (Serial.available()) {
+  /*
+   * Read a G-code command from serial port
+   */
+  String cmd = "";
+  char c = ' ';
+  while (c != 10) {
+    while (Serial.available() < 1)
+      delay(100);
     char c = Serial.read();
-    if (c == 'X') {
+    cmd += c;
+  }
+
+  if (cmd.substring(0,4) != "G01 "){
+    Serial.println("Unrecognized command.");
+    return;
+  }
+  // 4 is 'X'
+  String x = cmd.substring(5, 7);
+  if (cmd[5] == '-')
+    x = cmd.substring(5, 8);
+  
+  Serial.println("'"+x+"'");
+/*
+    if (&c == "X") {
       moveRight(1000);
     }
     else if (c == 'x') {
@@ -273,9 +293,6 @@ void loop() {
     else if (c == 'Y') {
       moveUp(1000);
     }
-  }
-
-  delay(100);
-
+*/
 }
 
