@@ -66,6 +66,9 @@ void initModule(int m[6]) {
 }
 
 void setup() {
+
+  Serial.begin(9600);
+ 
   initPin(13);
   pinMode(Xmin, INPUT);
   pinMode(Xmax, INPUT);
@@ -217,7 +220,7 @@ void testBackAndForth() {
 
 #define led 13
 
-void blink(n) {
+void blink(int n) {
   for (int i=0; i<n; i++) {
     digitalWrite(led, HIGH);
     delay(100);
@@ -242,7 +245,26 @@ void testMinMaxSwitches() {
   }
 }
 
+// let's see if we can make the movement dependent on serial input
+void testRemoteControl() {
+  // e.g.
+  // G01 X40. Y40. Z40.;
+}
+
+int i=0;
+char commandbuffer[100];
+
 void loop() {
-  testBackAndForth();
+
+  if(Serial.available()){
+     while( Serial.available() && i<99 ) {
+        commandbuffer[i++] = Serial.read();
+     }
+     commandbuffer[i++]='\0';
+     Serial.println((char*)commandbuffer);
+  }
+
+  delay(100);
+
 }
 
