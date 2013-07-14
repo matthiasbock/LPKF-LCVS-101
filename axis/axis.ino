@@ -3,11 +3,6 @@
 // using Keyes L298N motor modules/shields
 //
 
-#define Xmin 3
-#define Xmax 2
-#define Ymin 22
-#define Ymax 23
-
 /*
 Y axis stepper motor:
 
@@ -54,6 +49,12 @@ int B[6] = {53,52,51,50,49,48};
 int C[6] = {41,40,39,38,37,36};
 int D[6] = {30,31,32,33,34,35};
 int E[6] = {28,29,26,27,24,25};
+
+// axis end detecting switches
+#define Xmin 5
+#define Xmax 4
+#define Ymin 3
+#define Ymax 2
 
 void initPin(int pin) {
   pinMode(pin, OUTPUT);
@@ -231,7 +232,6 @@ void testBackAndForth() {
 }
 
 #define led 13
-
 void blink(int n) {
   for (int i=0; i<n; i++) {
     digitalWrite(led, HIGH);
@@ -241,23 +241,37 @@ void blink(int n) {
   }
 }
 
+/*
+ * Four mechanical switches are present in the machine
+ * to detect when the head has reached the end of an axis.
+ * In their unpressed state the switches are conducting.
+ * They become resistant (2K) when pressed.
+ * All four switches have a common 3.3V voltage supply pin.
+ * The four switch pins should be connected to a pull-down resistor.
+ */
+
 // test min/max switches
 void testMinMaxSwitches() {
-  if (digitalRead(Xmin) == HIGH) {
+  int level = LOW;
+  if (digitalRead(Xmin) == level) {
+    Serial.println("X axis reached min");
     blink(1);
   }
-  else if (digitalRead(Xmax) == HIGH) {
+  else if (digitalRead(Xmax) == level) {
+    Serial.println("X axis reached max");
     blink(2);
   }
-  else if (digitalRead(Ymin) == HIGH) {
+  else if (digitalRead(Ymin) == level) {
+    Serial.println("Y axis reached min");
     blink(3);
   }
-  else if (digitalRead(Ymax) == HIGH) {
+  else if (digitalRead(Ymax) == level) {
+    Serial.println("Y axis reached max");
     blink(4);
   }
 }
 
-void loop() {
+void testGCode() {
   /*
    * Read a G-code command from serial port
    */
@@ -294,5 +308,10 @@ void loop() {
       moveUp(1000);
     }
 */
+}
+
+void loop() {
+  testMinMaxSwitches();
+  delay(700);
 }
 
