@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1363.5"
+   height="1111"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="Plan.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="585.15951"
+     inkscape:cy="744.78571"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="973"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="30"
+     fit-margin-left="30"
+     fit-margin-right="30"
+     fit-margin-bottom="30" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(114.5,28.137817)">
+    <image
+       y="394.36218"
+       x="-84.5"
+       id="image2993"
+       xlink:href="file:///home/code/LPKF-LCVS-101/axis/Arduino%20Mega.jpg"
+       height="211.24936"
+       width="428" />
+    <image
+       y="1.8621826"
+       x="565"
+       id="image3004"
+       xlink:href="file:///home/code/LPKF-LCVS-101/axis/Keyes.jpg"
+       height="185"
+       width="220" />
+    <image
+       y="265.36218"
+       x="-1219"
+       id="image3015"
+       xlink:href="file:///home/code/LPKF-LCVS-101/axis/stepper.jpg"
+       height="146"
+       width="158"
+       transform="scale(-1,1)" />
+    <image
+       y="568.36218"
+       x="-1219"
+       id="image3015-5"
+       xlink:href="file:///home/code/LPKF-LCVS-101/axis/stepper.jpg"
+       height="146"
+       width="158"
+       transform="scale(-1,1)" />
+    <image
+       y="218.36218"
+       x="565"
+       id="image3004-7"
+       xlink:href="file:///home/code/LPKF-LCVS-101/axis/Keyes.jpg"
+       height="185"
+       width="220" />
+    <image
+       y="434.86218"
+       x="565"
+       id="image3004-71"
+       xlink:href="file:///home/code/LPKF-LCVS-101/axis/Keyes.jpg"
+       height="185"
+       width="220" />
+    <image
+       y="651.36218"
+       x="565"
+       id="image3004-9"
+       xlink:href="file:///home/code/LPKF-LCVS-101/axis/Keyes.jpg"
+       height="185"
+       width="220" />
+    <image
+       y="867.86218"
+       x="565"
+       id="image3004-1"
+       xlink:href="file:///home/code/LPKF-LCVS-101/axis/Keyes.jpg"
+       height="185"
+       width="220" />
+    <image
+       y="79.862183"
+       x="-126.5"
+       id="image3102"
+       xlink:href="file:///home/code/LPKF-LCVS-101/axis/ENC28J60.jpg"
+       height="116.53333"
+       width="190"
+       transform="scale(-1,1)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 256,167 124,0 0,264"
+       id="path3105"
+       inkscape:connector-curvature="0"
+       transform="translate(-114.5,-28.137817)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 434,457 132,0 0,-326 184,0"
+       id="path3107"
+       inkscape:connector-curvature="0"
+       transform="translate(-114.5,-28.137817)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 432,491 182,0 0,-150 126,0"
+       id="path3109"
+       inkscape:connector-curvature="0"
+       transform="translate(-114.5,-28.137817)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 432,521 216,0 0,58 108,0"
+       id="path3111"
+       inkscape:connector-curvature="0"
+       transform="translate(-114.5,-28.137817)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 430,553 176,0 0,238 150,0"
+       id="path3113"
+       inkscape:connector-curvature="0"
+       transform="translate(-114.5,-28.137817)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 430,589 134,0 0,420 182,0"
+       id="path3115"
+       inkscape:connector-curvature="0"
+       transform="translate(-114.5,-28.137817)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 868,113 380,0 0,198"
+       id="path3117"
+       inkscape:connector-curvature="0"
+       transform="translate(-114.5,-28.137817)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 826,283 300,0 0,92 74,0"
+       id="path3119"
+       inkscape:connector-curvature="0"
+       transform="translate(-114.5,-28.137817)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 842,505 400,0 0,-80"
+       id="path3121"
+       inkscape:connector-curvature="0"
+       transform="translate(-114.5,-28.137817)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 850,519 390,0 0,108"
+       id="path3123"
+       inkscape:connector-curvature="0"
+       transform="translate(-114.5,-28.137817)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 842,741 290,0 0,-72 76,0"
+       id="path3125"
+       inkscape:connector-curvature="0"
+       transform="translate(-114.5,-28.137817)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 836,939 404,0 0,-208"
+       id="path3127"
+       inkscape:connector-curvature="0"
+       transform="translate(-114.5,-28.137817)" />
+  </g>
+</svg>

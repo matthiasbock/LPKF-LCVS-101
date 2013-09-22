@@ -311,7 +311,7 @@ void testGCode() {
 }
 
 void loop() {
-  testMinMaxSwitches();
+  testBackAndForth();
   delay(700);
 }
 
