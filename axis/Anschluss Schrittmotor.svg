@@ -15,7 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="connection.svg">
+   sodipodi:docname="Anschluss Schrittmotor.svg"
+   inkscape:export-filename="Anschluss Schrittmotor.png"
+   inkscape:export-xdpi="63.587738"
+   inkscape:export-ydpi="63.587738">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,18 +28,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.74817337"
-     inkscape:cx="371.43766"
-     inkscape:cy="443.36028"
+     inkscape:zoom="1"
+     inkscape:cx="372.31053"
+     inkscape:cy="408.44531"
      inkscape:document-units="px"
-     inkscape:current-layer="g4214"
+     inkscape:current-layer="layer1"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:window-width="1280"
-     inkscape:window-height="975"
+     inkscape:window-height="973"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
@@ -61,14 +64,14 @@
        y="487.8949"
        x="-154.27118"
        id="image3134"
-       xlink:href="file:///home/code/Arduino-CNC/fotos/DSC09459.JPG"
+       xlink:href="file:///home/code/LPKF-LCVS-101/fotos/Schrittmotor+Platine.jpg"
        height="749"
        width="800" />
     <g
        id="g4214"
        transform="translate(-58.465662,339.78289)">
       <rect
-         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:6.25000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:6.25000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;opacity:0.5"
          id="rect3137"
          width="740.02179"
          height="337.4046"
@@ -652,6 +655,6 @@
        sodipodi:linespacing="125%"
        transform="translate(-154.27118,487.8949)"><tspan
          sodipodi:role="line"
-         id="tspan4058"></tspan></text>
+         id="tspan4058" /></text>
   </g>
 </svg>
