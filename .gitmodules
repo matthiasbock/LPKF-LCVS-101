@@ -1,0 +1,3 @@
+[submodule "axis/ethercard"]
+	path = axis/ethercard
+	url = https://github.com/jcw/ethercard.git
