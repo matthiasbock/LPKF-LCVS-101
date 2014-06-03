@@ -61,7 +61,7 @@
        y="394.36218"
        x="-84.5"
        id="image2993"
-       xlink:href="file:///home/code/LPKF-LCVS-101/axis/Arduino%20Mega.jpg"
+       xlink:href="Arduino%20Mega.jpg"
        height="211.24936"
        width="428" />
     <path
@@ -80,14 +80,14 @@
        y="1.8621826"
        x="565"
        id="image3004"
-       xlink:href="file:///home/code/LPKF-LCVS-101/axis/Keyes.jpg"
+       xlink:href="Keyes.jpg"
        height="185"
        width="220" />
     <image
        y="265.36218"
        x="-1219"
        id="image3015"
-       xlink:href="file:///home/code/LPKF-LCVS-101/axis/stepper.jpg"
+       xlink:href="stepper.jpg"
        height="146"
        width="158"
        transform="scale(-1,1)" />
@@ -95,7 +95,7 @@
        y="581.09009"
        x="-1226.071"
        id="image3015-5"
-       xlink:href="file:///home/code/LPKF-LCVS-101/axis/stepper.jpg"
+       xlink:href="stepper.jpg"
        height="146"
        width="158"
        transform="scale(-1,1)" />
@@ -103,35 +103,35 @@
        y="218.36218"
        x="565"
        id="image3004-7"
-       xlink:href="file:///home/code/LPKF-LCVS-101/axis/Keyes.jpg"
+       xlink:href="Keyes.jpg"
        height="185"
        width="220" />
     <image
        y="434.86218"
        x="565"
        id="image3004-71"
-       xlink:href="file:///home/code/LPKF-LCVS-101/axis/Keyes.jpg"
+       xlink:href="Keyes.jpg"
        height="185"
        width="220" />
     <image
        y="651.36218"
        x="565"
        id="image3004-9"
-       xlink:href="file:///home/code/LPKF-LCVS-101/axis/Keyes.jpg"
+       xlink:href="Keyes.jpg"
        height="185"
        width="220" />
     <image
        y="867.86218"
        x="565"
        id="image3004-1"
-       xlink:href="file:///home/code/LPKF-LCVS-101/axis/Keyes.jpg"
+       xlink:href="Keyes.jpg"
        height="185"
        width="220" />
     <image
        y="79.862183"
        x="-94.5"
        id="image3102"
-       xlink:href="file:///home/code/LPKF-LCVS-101/axis/ENC28J60.jpg"
+       xlink:href="ENC28J60.jpg"
        height="116.53333"
        width="190"
        transform="scale(-1,1)" />

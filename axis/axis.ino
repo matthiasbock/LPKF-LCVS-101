@@ -44,11 +44,11 @@ For C to be high (D low), pin3 is low, pin4 high.
                #define ENB 5
 
 // pins at which the five L298 modules are connected to the Arduino
-int A[6] = {47,46,45,44,43,42};
-int B[6] = {53,52,51,50,49,48};
-int C[6] = {41,40,39,38,37,36};
-int D[6] = {30,31,32,33,34,35};
-int E[6] = {28,29,26,27,24,25};
+int A[6] = {24,25,26,27,28,29};
+int B[6] = {30,31,32,33,34,35};
+int C[6] = {36,37,38,39,40,41};
+int D[6] = {42,43,44,45,46,47};
+int E[6] = {48,49,50,51,52,53};
 
 // axis end detecting switches
 #define Xmin 5
@@ -179,41 +179,41 @@ void updateX(int stepX) {
 
 int cyclePos = 1;
 
-void moveRight(int steps) {
+void moveRight(int steps, int wait) {
   switchXon();
   for (int i=0; i<steps; i++) {
     updateX(cyclePos);
-    delayMicroseconds(400);
+    delayMicroseconds(wait);
     cyclePos = (cyclePos % 20) + 1;
   }
   switchXoff();
 }
 
-void moveLeft(int steps) {
-  switchXon();
-  for (int i=0; i<steps; i++) {
-    updateX(cyclePos);
-    delayMicroseconds(400);
-    cyclePos = (cyclePos + 19) % 20;
-  }  
-  switchXoff();
-}
-
-void moveUp(int steps) {
+void moveUp(int steps, int wait) {
   switchYon();
   for (int i=0; i<steps; i++) {
     updateY(cyclePos);
-    delayMicroseconds(400);
+    delayMicroseconds(wait);
     cyclePos = (cyclePos % 20) + 1;
   }
   switchYoff();
 }
 
-void moveDown(int steps) {
+void moveLeft(int steps, int wait) {
+  switchXon();
+  for (int i=0; i<steps; i++) {
+    updateX(cyclePos);
+    delayMicroseconds(wait);
+    cyclePos = (cyclePos + 19) % 20;
+  }  
+  switchXoff();
+}
+
+void moveDown(int steps, int wait) {
   switchYon();
   for (int i=0; i<steps; i++) {
     updateY(cyclePos);
-    delayMicroseconds(400);
+    delayMicroseconds(wait);
     cyclePos = (cyclePos + 19) % 20;
   }
   switchYoff();
@@ -221,13 +221,13 @@ void moveDown(int steps) {
 
 // drive a little back and forth
 void testBackAndForth() {
-  moveRight(6000);
+  moveRight(6000, 300);
   delay(1000);
-  moveUp(6000);
+  moveUp(6000, 300);
   delay(1000);
-  moveLeft(6000);
+  moveLeft(6000, 300);
   delay(1000);
-  moveDown(6000);
+  moveDown(6000, 300);
   delay(1000);
 }
 
