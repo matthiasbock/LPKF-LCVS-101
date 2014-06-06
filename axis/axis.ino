@@ -229,10 +229,32 @@ void setup() {
 }
 
 /*
+ * Geschwindigkeitsrampe fahren
+ */
+
+int stepWait(int current_step, int total_steps) {
+  int default_delay = 150;
+  int additional_delay = 150;
+  int inclination_steps = 400;
+  
+  if (total_steps > inclination_steps) {
+    if (current_step < inclination_steps) {
+      return default_delay + int((1-(float(current_step)/inclination_steps)) * additional_delay);
+    }
+    else if (current_step > total_steps-inclination_steps) {
+      return default_delay + int((1-(float(total_steps-current_step)/inclination_steps)) * additional_delay);
+    }
+    else
+      return default_delay;
+  }
+  else
+    return default_delay;
+}
+
+/*
  * Proceed by number of steps on specified axis in specified direction
  */
 
-int stepWait = 150;
 void step(int stepper, int steps, int rotate, int stepping_mode) {
 
   String cmd = "step("; // cmd needs initial value before concatenation: http://arduino.cc/en/Tutorial/StringAdditionOperator
@@ -283,7 +305,7 @@ void step(int stepper, int steps, int rotate, int stepping_mode) {
     
     // wait between each step
     switchPower(stepper, ON);
-    delayMicroseconds(stepWait);
+    delayMicroseconds(stepWait(i,steps));
   }
 switchPower(stepper, OFF);
 }
