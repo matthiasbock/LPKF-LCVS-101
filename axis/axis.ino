@@ -77,6 +77,30 @@ int L298[5][6] = {
 #define A 0
 #define B 1
 
+// axis end detecting switch pins
+#define Xmin 17
+#define Xmax 16
+#define Ymin 15
+#define Ymax 14
+
+boolean isMin(int stepper) {
+  switch (stepper) {
+    case stepperX:
+      return digitalRead(Xmin)==LOW;
+    case stepperY:
+      return digitalRead(Ymin)==LOW;
+  }
+}
+
+boolean isMax(int stepper) {
+  switch (stepper) {
+    case stepperX:
+      return digitalRead(Xmax)==LOW;
+    case stepperY:
+      return digitalRead(Ymax)==LOW;
+  }
+}
+
 /*
  * Association of coils to module output ports
  *
@@ -212,22 +236,6 @@ void initStepper(int whichStepper) {
 #define HALF 1
 #define FULL 2
 
-void setup() {
-  // Computer interface
-  Serial.begin(9600);
-  // LED
-  initPin(13);
-  // end of slide detection
-/*  pinMode(Xmin, INPUT);
-  pinMode(Xmax, INPUT);
-  pinMode(Ymin, INPUT);
-  pinMode(Ymax, INPUT); */
-  // stepper control
-  initModulePins();
-  initStepper(stepperX);
-  initStepper(stepperY);
-}
-
 /*
  * Geschwindigkeitsrampe fahren
  */
@@ -260,54 +268,67 @@ void step(int stepper, int steps, int rotate, int stepping_mode) {
   String cmd = "step("; // cmd needs initial value before concatenation: http://arduino.cc/en/Tutorial/StringAdditionOperator
   Serial.println(cmd+stepper+", "+steps+", "+rotate+", "+stepping_mode+");");
 
+  int power = OFF;
+
   int Wnext;
   for (int i=0; i<steps; i++) {
 
-    if (rotate == FORWARD)
-      Wnext = (Wnow[stepper]+1) % 5;
-    else if (rotate == REVERSE)
-      Wnext = (Wnow[stepper]-1+5) % 5;
-    else {
-      Serial.println("Error: Invalid rotation direction.");
-      break;
-    }
-    
-//    String arrow = " -> ";
-//    Serial.println(Wnow[stepper]+arrow+Wnext);
-    
-    // Full-step mode
-    if (stepping_mode == FULL) {
-      // magnetize Wnow like Wnext
-      setCoil(stepper, Wnow[stepper], getCoilMagnetization(stepper, Wnext));
-      // demagnetize Wnext
-      setCoil(stepper, Wnext, 0);
-      // proceed with next coil
-      Wnow[stepper] = Wnext;
-    }
-    
-    // Half-step mode: full-step mode divided into two separate steps
-    else if (stepping_mode == HALF) {
-      // if Wnow is demagnetized
-      if (getCoilMagnetization(stepper, Wnow[stepper]) == 0) {
+    // make sure, we haven't reached the end of the axis
+    if (!( (rotate==FORWARD && isMax(stepper)) || (rotate==REVERSE && isMin(stepper)) )) {
+
+      if (power == OFF)
+        switchPower(stepper, ON);
+      
+      if (rotate == FORWARD)
+        Wnext = (Wnow[stepper]+1) % 5;
+      else if (rotate == REVERSE)
+        Wnext = (Wnow[stepper]-1+5) % 5;
+      else {
+        Serial.println("Error: Invalid rotation direction.");
+        break;
+      }
+      
+  //    String arrow = " -> ";
+  //    Serial.println(Wnow[stepper]+arrow+Wnext);
+      
+      // Full-step mode
+      if (stepping_mode == FULL) {
         // magnetize Wnow like Wnext
-        int mag = getCoilMagnetization(stepper, Wnext);
-        if (mag == 0) mag = N; // cannot be 0, else we would get stuck here
-        setCoil(stepper, Wnow[stepper], mag);
-      } else {
+        setCoil(stepper, Wnow[stepper], getCoilMagnetization(stepper, Wnext));
+        // demagnetize Wnext
         setCoil(stepper, Wnext, 0);
         // proceed with next coil
         Wnow[stepper] = Wnext;
       }
+      
+      // Half-step mode: full-step mode divided into two separate steps
+      else if (stepping_mode == HALF) {
+        // if Wnow is demagnetized
+        if (getCoilMagnetization(stepper, Wnow[stepper]) == 0) {
+          // magnetize Wnow like Wnext
+          int mag = getCoilMagnetization(stepper, Wnext);
+          if (mag == 0) mag = N; // cannot be 0, else we would get stuck here
+          setCoil(stepper, Wnow[stepper], mag);
+        } else {
+          setCoil(stepper, Wnext, 0);
+          // proceed with next coil
+          Wnow[stepper] = Wnext;
+        }
+      } else {
+        Serial.println("Error: Invalid stepping mode.");
+        break;
+      }
+      
+      // wait between each step
+      delayMicroseconds(stepWait(i,steps));
     } else {
-      Serial.println("Error: Invalid stepping mode.");
+      Serial.println("Not stepping: Reached end of axis.");
       break;
     }
-    
-    // wait between each step
-    switchPower(stepper, ON);
-    delayMicroseconds(stepWait(i,steps));
   }
-switchPower(stepper, OFF);
+  
+  if (power == ON)
+    switchPower(stepper, OFF);
 }
 
 /*
@@ -325,7 +346,7 @@ void testBackAndForth() {
   delay(wait);
   step(stepperY, 6000, REVERSE, HALF);
   delay(wait);
-/*
+
   step(stepperX, 6000, FORWARD, FULL);
   delay(wait);
   step(stepperX, 6000, REVERSE, FULL);
@@ -333,8 +354,40 @@ void testBackAndForth() {
   step(stepperY, 6000, FORWARD, FULL);
   delay(wait);
   step(stepperY, 6000, REVERSE, FULL);
-  delay(wait);*/
+  delay(wait);
 }
+
+/*
+ * Pack step in a more convenient function
+ * specific to the CNC machine
+ */
+
+#define MOVE_LEFT  10 // arbitrary; avoid collision with other constants
+#define MOVE_RIGHT 11
+#define MOVE_UP    12
+#define MOVE_DOWN  13
+
+void move(int where, int steps) {
+  switch (where) {
+    case MOVE_LEFT:
+      step(stepperX, steps, REVERSE, HALF);
+      break;
+    case MOVE_RIGHT:
+      step(stepperX, steps, FORWARD, HALF);
+      break;
+    case MOVE_UP:
+      step(stepperY, steps, FORWARD, HALF);
+      break;
+    case MOVE_DOWN:
+      step(stepperY, steps, REVERSE, HALF);
+      break;
+  }
+}
+
+/*
+ * Are the L298 module LEDs lighting up
+ * in the desired fashion ?
+ */
 
 void testModuleLEDs() {
   switchPower(stepperX, ON);
@@ -347,57 +400,59 @@ void testModuleLEDs() {
     }
 }
 
-void loop() {
-  testBackAndForth();
-//  testModuleLEDs();
-}
-
-
-#define led 13
-void blink(int n) {
-  for (int i=0; i<n; i++) {
-    digitalWrite(led, HIGH);
-    delay(100);
-    digitalWrite(led, LOW);
-    delay(100);
-  }
-}
-
 /*
- * Four mechanical switches are present in the machine
- * to detect when the head has reached the end of an axis.
+ * Four mechano-electrical switches are present in the machine
+ * to detect when a head has reached the end of an axis.
+ *
  * In their unpressed state the switches are conducting.
  * They become resistant (2K) when pressed.
+ * This way is more clever, than the other way around,
+ * because this way the controller has a means of detecting problems
+ * with the switches and can protect the machine from damage
+ * (No more than one switch per axis can
+ * be low at a time, else they are not functioning properly).
+ *
  * All four switches have a common 3.3V voltage supply pin.
  * The four switch pins should be connected to a pull-down resistor.
  */
 
-// axis end detecting switches
-#define Xmin 5
-#define Xmax 4
-#define Ymin 3
-#define Ymax 2
-
 // test min/max switches
 void testMinMaxSwitches() {
-  int level = LOW;
-  if (digitalRead(Xmin) == level) {
+  if (isMin(stepperX)) {
     Serial.println("X axis reached min");
-    blink(1);
-  }
-  else if (digitalRead(Xmax) == level) {
+  } else if (isMax(stepperX)) {
     Serial.println("X axis reached max");
-    blink(2);
-  }
-  else if (digitalRead(Ymin) == level) {
+  } else if (isMin(stepperY)) {
     Serial.println("Y axis reached min");
-    blink(3);
-  }
-  else if (digitalRead(Ymax) == level) {
+  } else if (isMax(stepperY)) {
     Serial.println("Y axis reached max");
-    blink(4);
   }
 }
+
+void setup() {
+  // Computer interface
+  Serial.begin(9600);
+  // LED
+  initPin(13);
+  // end of slide detection
+  pinMode(Xmin, INPUT);
+  pinMode(Xmax, INPUT);
+  pinMode(Ymin, INPUT);
+  pinMode(Ymax, INPUT);
+  // stepper control
+  initModulePins();
+  initStepper(stepperX);
+  initStepper(stepperY);
+}
+
+void loop() {
+//  move(MOVE_UP, 10000);
+  delay(1000);
+  move(MOVE_DOWN, 10000);
+  delay(1000);
+}
+
+
 
 void testGCode() {
   /*
