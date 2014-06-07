@@ -6,39 +6,9 @@
 //
 
 /*
-This is how the stepper motor cables are connected to the L298 modules (NO!):
-
-stepper cable color
-          module (A-E)
-              label at module output pin
-
-Y axis stepper motor:
-
-yellow  = A_MotorA1;
-white   = A_MotorA2;
-red     = A_MotorB1;
-blue    = A_MotorB2;
-orange  = B_MotorA1;
-green   = B_MotorA2;
-black   = B_MotorB1;
-gray    = B_MotorB2;
-brown   = C_MotorA1;
-violet  = C_MotorA2;
-
-
-X axis stepper motor:
-
-yellow  = C_MotorB1;
-white   = C_MotorB2;
-blue    = D_MotorA1;
-red     = D_MotorA2;
-green   = D_MotorB1;
-orange  = D_MotorB2;
-gray    = E_MotorA1;
-black   = E_MotorA2;
-violet  = E_MotorB1;
-brown   = E_MotorB2;
-*/
+ * The wires of the LPKF cable are connected to the L298 module outputs
+ * from left to right without twists
+ */
 
 /*
  * Module pins
@@ -78,27 +48,41 @@ int L298[5][6] = {
 #define B 1
 
 // axis end detecting switch pins
-#define Xmin 17
-#define Xmax 16
-#define Ymin 15
-#define Ymax 14
+#define SWITCH_X_NEAR_MOTOR      17
+#define SWITCH_X_FAR_FROM_MOTOR  16
+#define SWITCH_Y_NEAR_MOTOR      14
+#define SWITCH_Y_FAR_FROM_MOTOR  15
 
 boolean isMin(int stepper) {
   switch (stepper) {
     case stepperX:
-      return digitalRead(Xmin)==LOW;
+      return digitalRead(SWITCH_X_NEAR_MOTOR)==LOW;
     case stepperY:
-      return digitalRead(Ymin)==LOW;
+      return digitalRead(SWITCH_Y_NEAR_MOTOR)==LOW;
   }
 }
 
 boolean isMax(int stepper) {
   switch (stepper) {
     case stepperX:
-      return digitalRead(Xmax)==LOW;
+      return digitalRead(SWITCH_X_FAR_FROM_MOTOR)==LOW;
     case stepperY:
-      return digitalRead(Ymax)==LOW;
+      return digitalRead(SWITCH_Y_FAR_FROM_MOTOR)==LOW;
   }
+}
+
+/*
+ * true: everything seems in order
+ * false: there is a problem
+ */
+boolean checkSwitches() {
+  // the two switches of one axis cannot be switched at the same time
+  if (isMin(stepperX) && isMax(stepperX))
+    return false;
+  else if (isMin(stepperY) && isMax(stepperY))
+    return false;
+  else
+    return true;
 }
 
 /*
@@ -174,9 +158,11 @@ void setCoil(int stepper, int coil, int magnetization) {
   CoilSetup[stepper][coil][2] = magnetization;
 }
 
+/*
+ * return the coil magnetization,
+ * we remembered from the invocation of setCoil
+ */
 int getCoilMagnetization(int stepper, int coil) {
-
-  // return the coil magnetization, we remembered from the invocation of setCoil
   return CoilSetup[stepper][coil][2];
 }
 
@@ -230,9 +216,11 @@ void initStepper(int whichStepper) {
   Wnow[whichStepper] = 4;
 }
 
-#define FORWARD 1
-#define REVERSE -1
+#define TOWARDS_MOTOR 1
+#define AWAY_FROM_MOTOR -1
+// OFF equals 0
 
+// stepping modes
 #define HALF 1
 #define FULL 2
 
@@ -262,34 +250,44 @@ int stepWait(int current_step, int total_steps) {
 /*
  * Proceed by number of steps on specified axis in specified direction
  */
-
 void step(int stepper, int steps, int rotate, int stepping_mode) {
 
+  // debug
   String cmd = "step("; // cmd needs initial value before concatenation: http://arduino.cc/en/Tutorial/StringAdditionOperator
   Serial.println(cmd+stepper+", "+steps+", "+rotate+", "+stepping_mode+");");
 
-  int power = OFF;
+  if (!checkSwitches()) {
+    Serial.println("Aborting: Min/max switch defect.");
+    return;
+  }
 
+  int power = OFF;
   int Wnext;
   for (int i=0; i<steps; i++) {
 
     // make sure, we haven't reached the end of the axis
-    if (!( (rotate==FORWARD && isMax(stepper)) || (rotate==REVERSE && isMin(stepper)) )) {
+    if ( ((rotate==TOWARDS_MOTOR) && isMin(stepper)) || ((rotate==AWAY_FROM_MOTOR) && isMax(stepper)) ) {
+      Serial.println("Not stepping: Reached end of axis.");
+      break;
+    } else {
 
+      // only switch no power, if not reached end of axis
       if (power == OFF)
         switchPower(stepper, ON);
       
-      if (rotate == FORWARD)
+      // select next coil according to rotation direction
+      if (rotate == TOWARDS_MOTOR)
         Wnext = (Wnow[stepper]+1) % 5;
-      else if (rotate == REVERSE)
+      else if (rotate == AWAY_FROM_MOTOR)
         Wnext = (Wnow[stepper]-1+5) % 5;
       else {
         Serial.println("Error: Invalid rotation direction.");
         break;
       }
-      
-  //    String arrow = " -> ";
-  //    Serial.println(Wnow[stepper]+arrow+Wnext);
+
+      // debug coil selection  
+//    String arrow = " -> ";
+//    Serial.println(Wnow[stepper]+arrow+Wnext);
       
       // Full-step mode
       if (stepping_mode == FULL) {
@@ -314,19 +312,19 @@ void step(int stepper, int steps, int rotate, int stepping_mode) {
           // proceed with next coil
           Wnow[stepper] = Wnext;
         }
-      } else {
+      }
+      
+      // everything else is an error
+      else {
         Serial.println("Error: Invalid stepping mode.");
         break;
       }
       
       // wait between each step
       delayMicroseconds(stepWait(i,steps));
-    } else {
-      Serial.println("Not stepping: Reached end of axis.");
-      break;
     }
   }
-  
+  // if we switched on the power, switch it back off
   if (power == ON)
     switchPower(stepper, OFF);
 }
@@ -338,28 +336,27 @@ void testBackAndForth() {
 
   int wait = 200;
 
-  step(stepperX, 6000, FORWARD, HALF);
+  step(stepperX, 6000, TOWARDS_MOTOR, HALF);
   delay(wait);
-  step(stepperX, 6000, REVERSE, HALF);
+  step(stepperX, 6000, AWAY_FROM_MOTOR, HALF);
   delay(wait);
-  step(stepperY, 6000, FORWARD, HALF);
+  step(stepperY, 6000, TOWARDS_MOTOR, HALF);
   delay(wait);
-  step(stepperY, 6000, REVERSE, HALF);
+  step(stepperY, 6000, AWAY_FROM_MOTOR, HALF);
   delay(wait);
 
-  step(stepperX, 6000, FORWARD, FULL);
+  step(stepperX, 6000, TOWARDS_MOTOR, FULL);
   delay(wait);
-  step(stepperX, 6000, REVERSE, FULL);
+  step(stepperX, 6000, AWAY_FROM_MOTOR, FULL);
   delay(wait);
-  step(stepperY, 6000, FORWARD, FULL);
+  step(stepperY, 6000, TOWARDS_MOTOR, FULL);
   delay(wait);
-  step(stepperY, 6000, REVERSE, FULL);
+  step(stepperY, 6000, AWAY_FROM_MOTOR, FULL);
   delay(wait);
 }
 
 /*
- * Pack step in a more convenient function
- * specific to the CNC machine
+ * Wrap stepping into a more convenient function
  */
 
 #define MOVE_LEFT  10 // arbitrary; avoid collision with other constants
@@ -370,16 +367,16 @@ void testBackAndForth() {
 void move(int where, int steps) {
   switch (where) {
     case MOVE_LEFT:
-      step(stepperX, steps, REVERSE, HALF);
+      step(stepperX, steps, TOWARDS_MOTOR, HALF);
       break;
     case MOVE_RIGHT:
-      step(stepperX, steps, FORWARD, HALF);
+      step(stepperX, steps, AWAY_FROM_MOTOR, HALF);
       break;
     case MOVE_UP:
-      step(stepperY, steps, FORWARD, HALF);
+      step(stepperY, steps, TOWARDS_MOTOR, HALF);
       break;
     case MOVE_DOWN:
-      step(stepperY, steps, REVERSE, HALF);
+      step(stepperY, steps, AWAY_FROM_MOTOR, HALF);
       break;
   }
 }
@@ -388,7 +385,6 @@ void move(int where, int steps) {
  * Are the L298 module LEDs lighting up
  * in the desired fashion ?
  */
-
 void testModuleLEDs() {
   switchPower(stepperX, ON);
   switchPower(stepperY, ON);
@@ -435,10 +431,10 @@ void setup() {
   // LED
   initPin(13);
   // end of slide detection
-  pinMode(Xmin, INPUT);
-  pinMode(Xmax, INPUT);
-  pinMode(Ymin, INPUT);
-  pinMode(Ymax, INPUT);
+  pinMode(SWITCH_X_NEAR_MOTOR, INPUT);
+  pinMode(SWITCH_X_FAR_FROM_MOTOR, INPUT);
+  pinMode(SWITCH_Y_NEAR_MOTOR, INPUT);
+  pinMode(SWITCH_Y_FAR_FROM_MOTOR, INPUT);
   // stepper control
   initModulePins();
   initStepper(stepperX);
@@ -446,10 +442,10 @@ void setup() {
 }
 
 void loop() {
-//  move(MOVE_UP, 10000);
-  delay(1000);
-  move(MOVE_DOWN, 10000);
-  delay(1000);
+  move(MOVE_RIGHT, 1000);
+//  delay(1000);
+//  move(MOVE_RIGHT, 10000);
+//  delay(1000);
 }
 
 
