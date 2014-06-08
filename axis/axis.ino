@@ -186,6 +186,22 @@ void switchPower(int stepper, int level) {
   }
 }
 
+/*
+ * Disable a stepper for a while
+ * without setting the L298s to brake
+ */
+void stepperIdle(int stepper, int wait) {
+  int cache[5] = {0,0,0,0,0};
+  for (int coil=W1; coil<=W5; coil++) {
+    cache[coil] = getCoilMagnetization(stepper,coil);
+    setCoil(stepper,coil,0);
+  }
+  delayMicroseconds(wait);
+  for (int coil=W1; coil<=W5; coil++) {
+    setCoil(stepper,coil,cache[coil]);
+  }
+}
+
 void initPin(int pin) {
   pinMode(pin, OUTPUT);
   digitalWrite(pin, LOW);
@@ -228,10 +244,10 @@ void initStepper(int whichStepper) {
  * Geschwindigkeitsrampe fahren
  */
 
-int stepWait(int current_step, int total_steps) {
-  int default_delay = 150;
-  int additional_delay = 150;
-  int inclination_steps = 400;
+int stepWait(int current_step, int total_steps, int ramp_min, int ramp_max) {
+  int default_delay = ramp_min;
+  int additional_delay = ramp_max-ramp_min;
+  int inclination_steps = 300;
   
   if (total_steps > inclination_steps) {
     if (current_step < inclination_steps) {
@@ -250,7 +266,7 @@ int stepWait(int current_step, int total_steps) {
 /*
  * Proceed by number of steps on specified axis in specified direction
  */
-void step(int stepper, int steps, int rotate, int stepping_mode) {
+void step(int stepper, int steps, int rotate, int stepping_mode, boolean ramp) {
 
   // debug
   String cmd = "step("; // cmd needs initial value before concatenation: http://arduino.cc/en/Tutorial/StringAdditionOperator
@@ -272,8 +288,11 @@ void step(int stepper, int steps, int rotate, int stepping_mode) {
     } else {
 
       // only switch no power, if not reached end of axis
-      if (power == OFF)
+      if (power == OFF) {
         switchPower(stepper, ON);
+        power = ON;
+        delayMicroseconds(100);
+      }
       
       // select next coil according to rotation direction
       if (rotate == TOWARDS_MOTOR)
@@ -291,12 +310,28 @@ void step(int stepper, int steps, int rotate, int stepping_mode) {
       
       // Full-step mode
       if (stepping_mode == FULL) {
-        // magnetize Wnow like Wnext
-        setCoil(stepper, Wnow[stepper], getCoilMagnetization(stepper, Wnext));
-        // demagnetize Wnext
-        setCoil(stepper, Wnext, 0);
-        // proceed with next coil
-        Wnow[stepper] = Wnext;
+        /*
+         * In full step mode, in every step exactly one coil is demagnetized.
+         * Wnow equals the coil, which currently is demagnetized.
+         */
+        
+        // are we in a half step position?
+        if (getCoilMagnetization(stepper, Wnow[stepper]) != 0) {
+          /*
+           * We cannot operate full step rotation from a half step position,
+           * so we need to perform a half step first.
+           */
+          setCoil(stepper, Wnow[stepper], 0);
+        } else {
+          // we are in proper full step position
+
+          // magnetize Wnow like Wnext
+          setCoil(stepper, Wnow[stepper], getCoilMagnetization(stepper, Wnext));
+          // demagnetize Wnext
+          setCoil(stepper, Wnext, 0);
+          // proceed with next coil
+          Wnow[stepper] = Wnext;
+        }
       }
       
       // Half-step mode: full-step mode divided into two separate steps
@@ -305,7 +340,7 @@ void step(int stepper, int steps, int rotate, int stepping_mode) {
         if (getCoilMagnetization(stepper, Wnow[stepper]) == 0) {
           // magnetize Wnow like Wnext
           int mag = getCoilMagnetization(stepper, Wnext);
-          if (mag == 0) mag = N; // cannot be 0, else we would get stuck here
+          if (mag == 0) mag = N; // must not be 0, else we would get stuck here
           setCoil(stepper, Wnow[stepper], mag);
         } else {
           setCoil(stepper, Wnext, 0);
@@ -321,7 +356,10 @@ void step(int stepper, int steps, int rotate, int stepping_mode) {
       }
       
       // wait between each step
-      delayMicroseconds(stepWait(i,steps));
+      if (ramp)
+        delayMicroseconds(stepWait(i,steps,150,400));
+      else
+        delayMicroseconds(150);
     }
   }
   // if we switched on the power, switch it back off
@@ -334,25 +372,29 @@ void step(int stepper, int steps, int rotate, int stepping_mode) {
  */
 void testBackAndForth() {
 
-  int wait = 200;
+  int wait = 1000;
+  boolean ramp = true;
 
-  step(stepperX, 6000, TOWARDS_MOTOR, HALF);
+  step(stepperX, 6000, TOWARDS_MOTOR,   HALF, ramp);
   delay(wait);
-  step(stepperX, 6000, AWAY_FROM_MOTOR, HALF);
+  step(stepperX, 6000, AWAY_FROM_MOTOR, HALF, ramp);
   delay(wait);
-  step(stepperY, 6000, TOWARDS_MOTOR, HALF);
+  step(stepperY, 6000, TOWARDS_MOTOR,   HALF, ramp);
   delay(wait);
-  step(stepperY, 6000, AWAY_FROM_MOTOR, HALF);
+  step(stepperY, 6000, AWAY_FROM_MOTOR, HALF, ramp);
   delay(wait);
 
-  step(stepperX, 6000, TOWARDS_MOTOR, FULL);
+/* Initialize FULL step mode, before using it!
+
+  step(stepperX, 6000, TOWARDS_MOTOR,   FULL, ramp);
   delay(wait);
-  step(stepperX, 6000, AWAY_FROM_MOTOR, FULL);
+  step(stepperX, 6000, AWAY_FROM_MOTOR, FULL, ramp);
   delay(wait);
-  step(stepperY, 6000, TOWARDS_MOTOR, FULL);
+  step(stepperY, 6000, TOWARDS_MOTOR,   FULL, ramp);
   delay(wait);
-  step(stepperY, 6000, AWAY_FROM_MOTOR, FULL);
+  step(stepperY, 6000, AWAY_FROM_MOTOR, FULL, ramp);
   delay(wait);
+  */
 }
 
 /*
@@ -364,19 +406,19 @@ void testBackAndForth() {
 #define MOVE_UP    12
 #define MOVE_DOWN  13
 
-void move(int where, int steps) {
+void move(int where, int steps, boolean ramp) {
   switch (where) {
     case MOVE_LEFT:
-      step(stepperX, steps, TOWARDS_MOTOR, HALF);
+      step(stepperX, steps, TOWARDS_MOTOR,   HALF, ramp);
       break;
     case MOVE_RIGHT:
-      step(stepperX, steps, AWAY_FROM_MOTOR, HALF);
+      step(stepperX, steps, AWAY_FROM_MOTOR, HALF, ramp);
       break;
     case MOVE_UP:
-      step(stepperY, steps, TOWARDS_MOTOR, HALF);
+      step(stepperY, steps, TOWARDS_MOTOR,   HALF, ramp);
       break;
     case MOVE_DOWN:
-      step(stepperY, steps, AWAY_FROM_MOTOR, HALF);
+      step(stepperY, steps, AWAY_FROM_MOTOR, HALF, ramp);
       break;
   }
 }
@@ -442,10 +484,15 @@ void setup() {
 }
 
 void loop() {
-  move(MOVE_RIGHT, 1000);
-//  delay(1000);
-//  move(MOVE_RIGHT, 10000);
-//  delay(1000);
+//  testBackAndForth();
+  move(MOVE_LEFT, 6000, true);
+  delay(1000);
+  move(MOVE_RIGHT, 6000, true);
+  delay(1000);
+  move(MOVE_UP, 6000, true);
+  delay(1000);
+  move(MOVE_DOWN, 6000, true);
+  delay(1000);
 }
 
 
