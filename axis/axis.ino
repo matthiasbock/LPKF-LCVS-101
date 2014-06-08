@@ -247,7 +247,7 @@ void initStepper(int whichStepper) {
 int stepWait(int current_step, int total_steps, int ramp_min, int ramp_max) {
   int default_delay = ramp_min;
   int additional_delay = ramp_max-ramp_min;
-  int inclination_steps = 300;
+  int inclination_steps = 500;
   
   if (total_steps > inclination_steps) {
     if (current_step < inclination_steps) {
@@ -357,7 +357,7 @@ void step(int stepper, int steps, int rotate, int stepping_mode, boolean ramp) {
       
       // wait between each step
       if (ramp)
-        delayMicroseconds(stepWait(i,steps,150,400));
+        delayMicroseconds(stepWait(i,steps,150,500));
       else
         delayMicroseconds(150);
     }
@@ -484,15 +484,15 @@ void setup() {
 }
 
 void loop() {
-//  testBackAndForth();
-  move(MOVE_LEFT, 6000, true);
+  testBackAndForth();
+/*  move(MOVE_LEFT, 6000, true);
   delay(1000);
   move(MOVE_RIGHT, 6000, true);
   delay(1000);
   move(MOVE_UP, 6000, true);
   delay(1000);
   move(MOVE_DOWN, 6000, true);
-  delay(1000);
+  delay(1000);*/
 }
 
 
