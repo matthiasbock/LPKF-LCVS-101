@@ -60,6 +60,7 @@ boolean isMin(int stepper) {
     case stepperY:
       return digitalRead(SWITCH_Y_NEAR_MOTOR)==LOW;
   }
+  return true;
 }
 
 boolean isMax(int stepper) {
@@ -69,6 +70,7 @@ boolean isMax(int stepper) {
     case stepperY:
       return digitalRead(SWITCH_Y_FAR_FROM_MOTOR)==LOW;
   }
+  return true;
 }
 
 /*
@@ -227,7 +229,7 @@ void initStepper(int whichStepper) {
   setCoil( whichStepper, W4, S );
   setCoil( whichStepper, W5, 0 );
   switchPower( whichStepper, ON );
-  delay(1);
+  delayMicroseconds(200);
   switchPower( whichStepper, OFF );
   Wnow[whichStepper] = 4;
 }
@@ -283,7 +285,7 @@ void step(int stepper, int steps, int rotate, int stepping_mode, boolean ramp) {
 
     // make sure, we haven't reached the end of the axis
     if ( ((rotate==TOWARDS_MOTOR) && isMin(stepper)) || ((rotate==AWAY_FROM_MOTOR) && isMax(stepper)) ) {
-      Serial.println("Not stepping: Reached end of axis.");
+      Serial.println("Aborting: Reached end of axis.");
       break;
     } else {
 
@@ -384,8 +386,6 @@ void testBackAndForth() {
   step(stepperY, 6000, AWAY_FROM_MOTOR, HALF, ramp);
   delay(wait);
 
-// Initialize FULL step mode, before using it!
-
   step(stepperX, 6000, TOWARDS_MOTOR,   FULL, ramp);
   delay(wait);
   step(stepperX, 6000, AWAY_FROM_MOTOR, FULL, ramp);
@@ -406,19 +406,19 @@ void testBackAndForth() {
 #define MOVE_UP    12
 #define MOVE_DOWN  13
 
-void move(int where, int steps, boolean ramp) {
+void move(int where, int steps, int mode, boolean ramp) {
   switch (where) {
     case MOVE_LEFT:
-      step(stepperX, steps, TOWARDS_MOTOR,   HALF, ramp);
+      step(stepperX, steps, TOWARDS_MOTOR,   mode, ramp);
       break;
     case MOVE_RIGHT:
-      step(stepperX, steps, AWAY_FROM_MOTOR, HALF, ramp);
+      step(stepperX, steps, AWAY_FROM_MOTOR, mode, ramp);
       break;
     case MOVE_UP:
-      step(stepperY, steps, TOWARDS_MOTOR,   HALF, ramp);
+      step(stepperY, steps, TOWARDS_MOTOR,   mode, ramp);
       break;
     case MOVE_DOWN:
-      step(stepperY, steps, AWAY_FROM_MOTOR, HALF, ramp);
+      step(stepperY, steps, AWAY_FROM_MOTOR, mode, ramp);
       break;
   }
 }
@@ -483,57 +483,93 @@ void setup() {
   initStepper(stepperY);
 }
 
-void loop() {
-  testBackAndForth();
-/*  move(MOVE_LEFT, 6000, true);
-  delay(1000);
-  move(MOVE_RIGHT, 6000, true);
-  delay(1000);
-  move(MOVE_UP, 6000, true);
-  delay(1000);
-  move(MOVE_DOWN, 6000, true);
-  delay(1000);*/
+String readln() {
+  String result = "";
+  int c;
+  while (true) {
+    while (Serial.available() == 0)
+      delay(1);
+    c = Serial.read();
+    Serial.print(char(c));
+    if (c == 10 || c == 13)
+      return result;
+    else
+      result += char(c);
+  }
 }
 
+int gcode_mode, gcode_direction, gcode_steps;
+String param;
 
+void parseInstruction(String cmd) {
+  if (cmd=="G00") {
+    gcode_mode = FULL;
+    Serial.println("FULL step mode");
+  }
+  else if (cmd=="G01") {
+    gcode_mode = HALF;
+    Serial.println("HALF step mode");
+  }
+  else if (cmd.charAt(0)=='X') {
+    param = cmd.substring(1); // except X
+    if (param.charAt(0) == '-') {
+      gcode_direction = MOVE_LEFT;
+      param = param.substring(1); // except minus
+      Serial.println(param+" steps to the left");
+    } else {
+      gcode_direction = MOVE_RIGHT;
+      Serial.println(param+" steps to the right");
+    }
+    gcode_steps = param.toInt();
+  }
+  else if (cmd.charAt(0)=='Y') {
+    param = cmd.substring(1); // except Y
+    if (param.charAt(0) == '-') {
+      gcode_direction = MOVE_UP;
+      param = param.substring(1); // except minus
+      Serial.println(param+" steps up");
+    } else {
+      gcode_direction = MOVE_DOWN;
+      Serial.println(param+" steps down");
+    }
+    gcode_steps = param.toInt();
+  }
+}
 
-void testGCode() {
+void GCodeConsole() {
   /*
    * Read a G-code command from serial port
    */
-  String cmd = "";
-  char c = ' ';
-  while (c != 10) {
-    while (Serial.available() < 1)
-      delay(100);
-    char c = Serial.read();
-    cmd += c;
-  }
+  Serial.print("g-code@cnc:/>");
+  String line = readln();
+  Serial.println(line);
 
-  if (cmd.substring(0,4) != "G01 "){
-    Serial.println("Unrecognized command.");
-    return;
+  /*
+   * G00: rapid motion (full step mode)
+   * G01: precise motion (half step mode)
+   */
+
+  // G00 X1000 Y0
+
+  String cmd[4] = {"","","",""};
+  int pos, i=0;
+  while (line.indexOf(" ") > -1) {
+    pos = line.indexOf(" ");
+    cmd[i] = line.substring(0,pos);
+    i++;
+    line = line.substring(pos+1);
   }
-  // 4 is 'X'
-  String x = cmd.substring(5, 7);
-  if (cmd[5] == '-')
-    x = cmd.substring(5, 8);
-  
-  Serial.println("'"+x+"'");
-/*
-    if (&c == "X") {
-      moveRight(1000);
-    }
-    else if (c == 'x') {
-      moveLeft(1000);
-    }
-    else if (c == 'y') {
-      moveDown(1000);
-    }
-    else if (c == 'Y') {
-      moveUp(1000);
-    }
-*/
+  cmd[i] = line;
+
+  if (cmd[0]=="G00" || cmd[0]=="G01") {
+    for (int i=0; i<4; i++)
+      parseInstruction(cmd[i]);
+    move(gcode_direction, gcode_steps, gcode_mode, true);
+  } else 
+    Serial.println("Unknown command.");
 }
 
+void loop() {
+  GCodeConsole();
+}
 
