@@ -357,9 +357,9 @@ void step(int stepper, int steps, int rotate, int stepping_mode, boolean ramp) {
       
       // wait between each step
       if (ramp)
-        delayMicroseconds(stepWait(i,steps,150,500));
+        delayMicroseconds(stepWait(i,steps,200,500));
       else
-        delayMicroseconds(150);
+        delayMicroseconds(200);
     }
   }
   // if we switched on the power, switch it back off
@@ -384,7 +384,7 @@ void testBackAndForth() {
   step(stepperY, 6000, AWAY_FROM_MOTOR, HALF, ramp);
   delay(wait);
 
-/* Initialize FULL step mode, before using it!
+// Initialize FULL step mode, before using it!
 
   step(stepperX, 6000, TOWARDS_MOTOR,   FULL, ramp);
   delay(wait);
@@ -394,7 +394,7 @@ void testBackAndForth() {
   delay(wait);
   step(stepperY, 6000, AWAY_FROM_MOTOR, FULL, ramp);
   delay(wait);
-  */
+  
 }
 
 /*
