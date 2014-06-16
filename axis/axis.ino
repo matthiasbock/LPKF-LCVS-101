@@ -246,7 +246,7 @@ void initStepper(int whichStepper) {
  * Geschwindigkeitsrampe fahren
  */
 
-int stepWait(int current_step, int total_steps, int ramp_min, int ramp_max) {
+int stepWait(long current_step, long total_steps, int ramp_min, int ramp_max) {
   int default_delay = ramp_min;
   int additional_delay = ramp_max-ramp_min;
   int inclination_steps = 500;
@@ -268,7 +268,7 @@ int stepWait(int current_step, int total_steps, int ramp_min, int ramp_max) {
 /*
  * Proceed by number of steps on specified axis in specified direction
  */
-void step(int stepper, int steps, int rotate, int stepping_mode, boolean ramp) {
+void step(int stepper, long steps, int rotate, int stepping_mode, boolean ramp) {
 
   // debug
   String cmd = "step("; // cmd needs initial value before concatenation: http://arduino.cc/en/Tutorial/StringAdditionOperator
@@ -281,11 +281,11 @@ void step(int stepper, int steps, int rotate, int stepping_mode, boolean ramp) {
 
   int power = OFF;
   int Wnext;
-  for (int i=0; i<steps; i++) {
+  for (long i=0; i<steps; i++) {
 
     // make sure, we haven't reached the end of the axis
     if ( ((rotate==TOWARDS_MOTOR) && isMin(stepper)) || ((rotate==AWAY_FROM_MOTOR) && isMax(stepper)) ) {
-      Serial.println("Aborting: Reached end of axis.");
+      Serial.println("Aborting: Reached end of axis. Steps made: "+i);
       break;
     } else {
 
@@ -406,7 +406,7 @@ void testBackAndForth() {
 #define MOVE_UP    12
 #define MOVE_DOWN  13
 
-void move(int where, int steps, int mode, boolean ramp) {
+void move(int where, long steps, int mode, boolean ramp) {
   switch (where) {
     case MOVE_LEFT:
       step(stepperX, steps, TOWARDS_MOTOR,   mode, ramp);
@@ -498,7 +498,8 @@ String readln() {
   }
 }
 
-int gcode_mode, gcode_direction, gcode_steps;
+int gcode_mode, gcode_direction;
+long gcode_steps;
 String param;
 
 void parseInstruction(String cmd) {
