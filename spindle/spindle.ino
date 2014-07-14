@@ -16,8 +16,8 @@
 #define U_minus 13
 #define V_plus  10
 #define V_minus 11
-#define W_plus  8
-#define W_minus 9
+#define W_plus  6
+#define W_minus 7
 
 #define U 0
 #define V 1
@@ -43,48 +43,38 @@ long runtime = 0;
 // delayStep: microseconds
 // function: increase spindle speed step-by-step
 void delayStep() { 
-  int wait;
-/*  if (runtime < 3*sec) {
-    wait = 6000;
-  }
-  else if (runtime < 4*sec) {
-    wait = 5000;
-  }
-  else if (runtime < 6*sec) {
-    wait = 4000;
-  }
-  else if (runtime < 8*sec) {
-    wait = 3000;
-  }
-  else if (runtime < 10*sec) {
-    wait = 1800;
-  }
-  else
-    wait = 1600;
-  delayMicroseconds(wait); */
-  delay(666);
+  int wait = 100;
+//  delayMicroseconds(wait);
   if (runtime < 10*sec)
     runtime += wait;
 };
 
 
 // waitFETLock: microseconds
-int waitFETLock = 100;
+int waitFETLock = 1000;
 
 void setChannel(int ch, int level) {
   int p = channel[ch][plus];
   int m = channel[ch][minus];
   if (level == HIGH) { // connect channel to positive voltage
+    // disconnect GND
     digitalWrite(m, LOW);
+    // wait until MOSFET is locked
     delayMicroseconds(waitFETLock);
     runtime += waitFETLock;
+    // connect to VCC
     digitalWrite(p, HIGH);
+//    delayMicroseconds(waitFETLock);
   }
   else { // connect channel to ground
+    // switch off VCC
     digitalWrite(p, LOW);
+    // wait until MOSFET is locked
     delayMicroseconds(waitFETLock);
     runtime += waitFETLock;
+    // connect to GND
     digitalWrite(m, HIGH);
+//    delayMicroseconds(waitFETLock);
   }
 }
 
