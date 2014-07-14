@@ -4,13 +4,20 @@
 // Alfred Jager 33-1 W02
 //
 
+/*
+ * Minus pin high -> output connected to GND
+ * Minus pin low  -> output disconnected from GND
+ * Plus pin high  -> output connected to VCC
+ * Plus pin low   -> output disconnected from VCC
+ */ 
+
 // pins
-#define U_plus  22
-#define U_minus 24
-#define V_plus  26
-#define V_minus 28
-#define W_plus  30
-#define W_minus 32
+#define U_plus  12
+#define U_minus 13
+#define V_plus  10
+#define V_minus 11
+#define W_plus  8
+#define W_minus 9
 
 #define U 0
 #define V 1
@@ -22,8 +29,7 @@ int channel[3][2] = { {U_plus, U_minus}, {V_plus, V_minus}, {W_plus, W_minus} };
 
 void setup() {
         int pins[7] = {13, U_plus, U_minus, V_plus, V_minus, W_plus, W_minus};
-        int i;
-        for (i=0; i<=7; i++)  {
+        for (int i=0; i<=7; i++)  {
 		pinMode(pins[i], OUTPUT);
 		digitalWrite(pins[i], LOW);
         }
@@ -35,26 +41,35 @@ long runtime = 0;
 #define sec 1000000
 
 // delayStep: microseconds
-// function: how long to apply power during a step
+// function: increase spindle speed step-by-step
 void delayStep() { 
-  int wait = 1600;
-  if (runtime < 1*sec) {
+  int wait;
+/*  if (runtime < 3*sec) {
     wait = 6000;
   }
-  else if (runtime < 2*sec) {
+  else if (runtime < 4*sec) {
+    wait = 5000;
+  }
+  else if (runtime < 6*sec) {
+    wait = 4000;
+  }
+  else if (runtime < 8*sec) {
     wait = 3000;
   }
-  else if (runtime < 4*sec) {
+  else if (runtime < 10*sec) {
     wait = 1800;
   }
-  delayMicroseconds(wait);
+  else
+    wait = 1600;
+  delayMicroseconds(wait); */
+  delay(666);
   if (runtime < 10*sec)
     runtime += wait;
 };
 
 
 // waitFETLock: microseconds
-int waitFETLock = 1;
+int waitFETLock = 100;
 
 void setChannel(int ch, int level) {
   int p = channel[ch][plus];
@@ -94,7 +109,5 @@ int led = 0;
 
 void loop() {
   spin();
-  // blink  
-  led = (led+1) % 1024;
-  digitalWrite(13, led & 2);
+
 }
