@@ -11,6 +11,8 @@
  * Plus pin low   -> output disconnected from VCC
  */ 
 
+#include <SoftwareSerial.h>
+
 // pins
 #define U_plus  12
 #define U_minus 13
@@ -28,6 +30,7 @@
 int channel[3][2] = { {U_plus, U_minus}, {V_plus, V_minus}, {W_plus, W_minus} };
 
 void setup() {
+  Serial.begin(9600);
         int pins[7] = {13, U_plus, U_minus, V_plus, V_minus, W_plus, W_minus};
         for (int i=0; i<=7; i++)  {
 		pinMode(pins[i], OUTPUT);
@@ -43,9 +46,15 @@ long runtime = 0;
 // delayStep: microseconds
 // function: increase spindle speed step-by-step
 void delayStep() { 
-  int wait = 100;
-//  delayMicroseconds(wait);
-  if (runtime < 10*sec)
+  // from 2000 to 100 in 5s
+  int from = 10000;
+  int to = 40;
+  float time = 10*sec;
+  int wait = round(from+((runtime/time)*(to-from)));
+  if (runtime > time)
+    wait = to;
+  delayMicroseconds(wait);
+  if (runtime < 60*sec)
     runtime += wait;
 };
 
@@ -61,20 +70,18 @@ void setChannel(int ch, int level) {
     digitalWrite(m, LOW);
     // wait until MOSFET is locked
     delayMicroseconds(waitFETLock);
-    runtime += waitFETLock;
+//    runtime += waitFETLock;
     // connect to VCC
     digitalWrite(p, HIGH);
-//    delayMicroseconds(waitFETLock);
   }
   else { // connect channel to ground
     // switch off VCC
     digitalWrite(p, LOW);
     // wait until MOSFET is locked
     delayMicroseconds(waitFETLock);
-    runtime += waitFETLock;
+//    runtime += waitFETLock;
     // connect to GND
     digitalWrite(m, HIGH);
-//    delayMicroseconds(waitFETLock);
   }
 }
 
@@ -94,10 +101,26 @@ void spin() {
   delayStep();
 }
 
+void halt() {
+  setChannel(U, LOW);
+  setChannel(V, LOW);
+  setChannel(W, LOW);
+  delay(5000);
+}
 
-int led = 0;
+boolean spinning = true;
 
 void loop() {
-  spin();
-
+  if (spinning) {
+    spin();
+  }
+  if (Serial.available()) {
+    int ch = Serial.read();
+    if (ch == '0') {
+      spinning = false;
+    }
+    else if (ch == '1') {
+      spinning = true;
+    }
+  }
 }

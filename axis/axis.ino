@@ -275,6 +275,7 @@ void step(int stepper, long steps, int rotate, int stepping_mode, boolean ramp) 
   Serial.println(cmd+stepper+", "+steps+", "+rotate+", "+stepping_mode+");");
 
   if (!checkSwitches()) {
+    switchPower(stepper, OFF);
     Serial.println("Aborting: Min/max switch defect.");
     return;
   }
@@ -285,84 +286,84 @@ void step(int stepper, long steps, int rotate, int stepping_mode, boolean ramp) 
 
     // make sure, we haven't reached the end of the axis
     if ( ((rotate==TOWARDS_MOTOR) && isMin(stepper)) || ((rotate==AWAY_FROM_MOTOR) && isMax(stepper)) ) {
+      initStepper(stepper);
       Serial.println("Aborting: Reached end of axis. Steps made: "+i);
       break;
-    } else {
+    }
 
-      // only switch no power, if not reached end of axis
-      if (power == OFF) {
-        switchPower(stepper, ON);
-        power = ON;
-        delayMicroseconds(100);
-      }
-      
-      // select next coil according to rotation direction
-      if (rotate == TOWARDS_MOTOR)
-        Wnext = (Wnow[stepper]+1) % 5;
-      else if (rotate == AWAY_FROM_MOTOR)
-        Wnext = (Wnow[stepper]-1+5) % 5;
-      else {
-        Serial.println("Error: Invalid rotation direction.");
-        break;
-      }
+    // only switch no power, if not reached end of axis
+    if (power == OFF) {
+      switchPower(stepper, ON);
+      power = ON;
+      delayMicroseconds(100);
+    }
+    
+    // select next coil according to rotation direction
+    if (rotate == TOWARDS_MOTOR)
+      Wnext = (Wnow[stepper]+1) % 5;
+    else if (rotate == AWAY_FROM_MOTOR)
+      Wnext = (Wnow[stepper]-1+5) % 5;
+    else {
+      Serial.println("Error: Invalid rotation direction.");
+      break;
+    }
 
-      // debug coil selection  
+    // debug coil selection  
 //    String arrow = " -> ";
 //    Serial.println(Wnow[stepper]+arrow+Wnext);
+    
+    // Full-step mode
+    if (stepping_mode == FULL) {
+      /*
+       * In full step mode, in every step exactly one coil is demagnetized.
+       * Wnow equals the coil, which currently is demagnetized.
+       */
       
-      // Full-step mode
-      if (stepping_mode == FULL) {
+      // are we in a half step position?
+      if (getCoilMagnetization(stepper, Wnow[stepper]) != 0) {
         /*
-         * In full step mode, in every step exactly one coil is demagnetized.
-         * Wnow equals the coil, which currently is demagnetized.
+         * We cannot operate full step rotation from a half step position,
+         * so we need to perform a half step first.
          */
-        
-        // are we in a half step position?
-        if (getCoilMagnetization(stepper, Wnow[stepper]) != 0) {
-          /*
-           * We cannot operate full step rotation from a half step position,
-           * so we need to perform a half step first.
-           */
-          setCoil(stepper, Wnow[stepper], 0);
-        } else {
-          // we are in proper full step position
+        setCoil(stepper, Wnow[stepper], 0);
+      } else {
+        // we are in proper full step position
 
-          // magnetize Wnow like Wnext
-          setCoil(stepper, Wnow[stepper], getCoilMagnetization(stepper, Wnext));
-          // demagnetize Wnext
-          setCoil(stepper, Wnext, 0);
-          // proceed with next coil
-          Wnow[stepper] = Wnext;
-        }
+        // magnetize Wnow like Wnext
+        setCoil(stepper, Wnow[stepper], getCoilMagnetization(stepper, Wnext));
+        // demagnetize Wnext
+        setCoil(stepper, Wnext, 0);
+        // proceed with next coil
+        Wnow[stepper] = Wnext;
       }
-      
-      // Half-step mode: full-step mode divided into two separate steps
-      else if (stepping_mode == HALF) {
-        // if Wnow is demagnetized
-        if (getCoilMagnetization(stepper, Wnow[stepper]) == 0) {
-          // magnetize Wnow like Wnext
-          int mag = getCoilMagnetization(stepper, Wnext);
-          if (mag == 0) mag = N; // must not be 0, else we would get stuck here
-          setCoil(stepper, Wnow[stepper], mag);
-        } else {
-          setCoil(stepper, Wnext, 0);
-          // proceed with next coil
-          Wnow[stepper] = Wnext;
-        }
-      }
-      
-      // everything else is an error
-      else {
-        Serial.println("Error: Invalid stepping mode.");
-        break;
-      }
-      
-      // wait between each step
-      if (ramp)
-        delayMicroseconds(stepWait(i,steps,200,500));
-      else
-        delayMicroseconds(200);
     }
+    
+    // Half-step mode: full-step mode divided into two separate steps
+    else if (stepping_mode == HALF) {
+      // if Wnow is demagnetized
+      if (getCoilMagnetization(stepper, Wnow[stepper]) == 0) {
+        // magnetize Wnow like Wnext
+        int mag = getCoilMagnetization(stepper, Wnext);
+        if (mag == 0) mag = N; // must not be 0, else we would get stuck here
+        setCoil(stepper, Wnow[stepper], mag);
+      } else {
+        setCoil(stepper, Wnext, 0);
+        // proceed with next coil
+        Wnow[stepper] = Wnext;
+      }
+    }
+    
+    // everything else is an error
+    else {
+      Serial.println("Error: Invalid stepping mode.");
+      break;
+    }
+    
+    // wait between each step
+    if (ramp)
+      delayMicroseconds(stepWait(i,steps,300,1000));
+    else
+      delayMicroseconds(300);
   }
   // if we switched on the power, switch it back off
   if (power == ON)
@@ -571,6 +572,7 @@ void GCodeConsole() {
 }
 
 void loop() {
-  GCodeConsole();
+//  GCodeConsole();
+  testBackAndForth();
 }
 
