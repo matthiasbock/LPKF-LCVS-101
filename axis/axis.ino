@@ -5,6 +5,14 @@
 // 5-phase stepper motor switching sequence implemented according to Berger Lahr datasheet page 6
 //
 
+#define LED 13
+
+/*
+ * A milling machine is attached to the CNC head and controlled
+ * by a 240V AC relay, which via a 170 Ohm resistor is attached to pin:
+ */
+#define RELAY 12
+
 /*
  * The wires of the LPKF cable are connected to the L298 module outputs
  * from left to right without twists
@@ -472,7 +480,9 @@ void setup() {
   // Computer interface
   Serial.begin(9600);
   // LED
-  initPin(13);
+  initPin(LED);
+  // Relais
+  initPin(RELAY);
   // end of slide detection
   pinMode(SWITCH_X_NEAR_MOTOR, INPUT);
   pinMode(SWITCH_X_FAR_FROM_MOTOR, INPUT);
@@ -503,7 +513,7 @@ int gcode_mode, gcode_direction;
 long gcode_steps;
 String param;
 
-void parseInstruction(String cmd) {
+void parseGCodeInstruction(String cmd) {
   if (cmd=="G00") {
     gcode_mode = FULL;
     Serial.println("FULL step mode");
@@ -564,15 +574,23 @@ void GCodeConsole() {
   cmd[i] = line;
 
   if (cmd[0]=="G00" || cmd[0]=="G01") {
-    for (int i=0; i<4; i++)
-      parseInstruction(cmd[i]);
+    for (int i=0; i<4; i++) {
+      parseGCodeInstruction(cmd[i]);
+    
     move(gcode_direction, gcode_steps, gcode_mode, true);
   } else 
     Serial.println("Unknown command.");
 }
 
+void blink(int pin) {
+  digitalWrite(pin, HIGH);
+  delay(2000);
+  digitalWrite(pin, LOW);
+  delay(2000);
+}
+
 void loop() {
-//  GCodeConsole();
-  testBackAndForth();
+  GCodeConsole();
+//  testBackAndForth();
 }
 
