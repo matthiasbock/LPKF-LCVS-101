@@ -1,0 +1,1 @@
+SS_favorite.addFavorite('not-logged-in','0');

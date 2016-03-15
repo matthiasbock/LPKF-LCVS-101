@@ -1,0 +1,2911 @@
+@charset "utf-8";
+body  {
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #B3B3B3;
+	background-image: url(../images/hdr/bdy-bgrd.jpg);
+	background-repeat: repeat-x;
+}
+h2 {
+	font-size: 14px;
+	color: #FFFFFF;
+}
+a img {border:none}
+.OMsite #container {
+	width: 995px;
+	background: #FFFFFF;
+	margin: 0 auto 0 auto;
+	text-align: left;
+	border-bottom: groove 4px #888888;
+	border-right: groove 4px #888888;
+	border-left: 1px groove #CCCCCC;
+} 
+.OMsite #container .editContent ul li {
+	list-style-type: square;
+	list-style-position:outside;
+	margin-left:15px;
+	padding-left:5px;
+}
+
+.OMsite #container h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #003399;
+}
+
+
+
+
+.OMsite #container h1 a:link {
+	color: #003399;
+	text-decoration: none;
+}
+
+.OMsite #container h1 a:visited {
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #container h1 a:hover {
+	color: #003399;
+	text-decoration: underline;
+}
+.OMsite #container h1 a:active {
+	color: #003399;
+	text-decoration: underline;
+}
+.OMsite #container h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: underline;
+}
+.OMsite #container h2 a:link {
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #container h2 a:visited {
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #container h2 a:hover {
+	color: #003399;
+	text-decoration: underline;
+}
+.OMsite #container h2 a:active {
+	color: #003399;
+	text-decoration: underline;
+}
+
+
+
+
+
+.OMsite #container p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+	padding: 0 5px 5px 5px;
+}
+.OMsite #container p a:link {
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+.OMsite #container p a:visited {
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.OMsite #container p a:hover {
+	color: #003399;
+	text-decoration: underline;
+}
+.OMsite #container p a:active {
+	color: #003399;
+	text-decoration: underline;
+}
+
+.OMsite #header {
+	height: 138px;
+	background-repeat: repeat-x;
+	background-color: #FFFFFF;
+	background-position: -10px 0;
+	background-image: url(../images/hdr/hdr-bgrd.jpg);
+} 
+* html .OMsite #header {
+	margin: 0;
+}
+
+.OMsite #header h1 {
+	margin: 0; /* zeroing the margin of the last element in the #header div will avoid margin collapse - an unexplainable space between divs. If the div has a border around it, this is not necessary as that also avoids the margin collapse */
+	padding: 10px 0; /* using padding instead of margin will allow you to keep the element away from the edges of the div */
+}
+
+.OMsite #logo {
+	height: 70px;
+	width: 285px;
+	float: left;
+	margin: 15px 0 5px 0;
+}
+.OMsite  #QuickLinks {
+	float: left;
+	height: 16px;
+	width: 70px;
+	margin: 0 0 0 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 11px;
+	font-style: italic;
+	padding-left: 0px;
+}
+.OMsite #GoVexta {
+	width: 240px;
+	float: left;
+	text-align: center;
+	font-family: arial;
+	font-weight: bold;
+	font-size: 13px;
+	color: #333333;
+	padding: 20px 0 22px 0;
+	border-right: 2px dotted #B3D9F9;
+}
+.OMsite #GoVexta a:link {
+	color: #333333;
+	text-decoration: none;
+}
+.OMsite #GoVexta a:visited {
+	color: #333333;
+	text-decoration: none;
+}
+.OMsite #GoVexta a:hover {
+	color: #003399;
+	text-decoration: underline;
+}
+.OMsite #GoVexta a:active {
+	color: #003399;
+	text-decoration: underline;
+}
+
+.OMsite #Services {
+	float: right;
+	height: 78px;
+	width: 454px;
+	margin: 0 20px 0 0;
+}
+
+.OMsite #companyName {
+	height: 25px;
+	width: 400px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: italic;
+	float: left;
+	margin: 40px 0 0 10px;
+}
+* html #companyName {
+	display: inline;
+}
+.OMsite #topLinks {
+	width: 452px;
+	float: left;
+	height: 25px;
+	margin: 0 0 0 10px;
+	border-bottom: 2px dotted #B3D9F9;
+}
+
+* html #topLinks {
+	display: inline;
+}
+.OMsite #topSearch {
+	width: 225px;
+	float: right;
+	margin: 0 0 0 0;
+}
+.OMsite #topSearch a:link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #topSearch a:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #topSearch a:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #topSearch a:active {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: none;
+}
+#SearchSelect {
+	width: 226px;
+	height: 21px;
+	margin-right: 1px;
+}
+#PartSearchTop {
+	padding: 3px;
+	width: 40px;
+	float: left;
+	background-color: #FFFFFF;
+	border-left: 1px solid #666666;
+	border-right: 1px solid #666666;
+	border-top: 1px solid #666666;
+}
+#KeywordSearchTop {
+	padding: 3px;
+	width: 68px;
+	float: left;
+	background-color: #FFFFFF;
+	border-top: 1px solid #666666;
+	border-right: 1px solid #666666;
+}
+#SpecSearchTop {
+	padding: 3px;
+	width: 94px;
+	float: left;
+	background-color: #FFFFFF;
+	border-top: 1px solid #666666;
+	border-left: 1px solid #666666;
+}
+#UniversalPartNumberSearch {
+	float: none;
+	width: 219px;
+	height: 75px;
+	padding: 5px 0 0 5px;
+	clear: left;
+	margin-right: 1px;
+	border-left: 1px solid #666666;
+	border-top: 1px solid #666666;
+}
+#UniversalKeywordSearch {
+	float: none;
+	width: 219px;
+	height: 75px;
+	padding: 5px 0 0 5px;
+	border-left: 1px solid #666666;
+	border-top: 1px solid #666666;
+	clear: left;
+	margin-right: 1px;
+}
+#UniversalSpecSearch {
+	float: none;
+	width: 219px;
+	height: 75px;
+	padding: 6px 0 0 5px;
+	border-left: 1px solid #666666;
+	border-top: 1px solid #666666;
+	clear: left;
+	margin-right: 1px;
+}
+.searchtxt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+.OMsite  #topMyPage {
+	float: left;
+	width: 175px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-right: 2px dotted #B3D9F9;
+	margin-top: 0px;
+	padding: 3px 5px 2px 5px;
+	z-index: 99999;
+}
+.OMsite  #topMyPage a {
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 11px;
+}
+
+
+*  html  #topMyPage {
+	display: inline;
+}
+.OMsite #navBar {
+	height: 35px;
+	width: 995px;
+	float: left;
+	clear: both;
+	background-image: url(../images/hdr/nav-bgrd.jpg);
+	background-repeat: repeat-x;
+	border-bottom: 2px solid #A3A3A3;
+	border-top: 2px solid #A3A3A3;
+	position: relative;
+	z-index: 1000;
+}
+.OMsite  #Login {
+	float: left;
+	height: 50px;
+	width: 200px;
+	padding: 0 0 0 40px;
+	margin: 0 3px 0 0;
+	background-image: url(../images/mainContent/tool-bgrd-login.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+*  html  #Login {
+	display: inline;
+}
+.OMsite  #Login  img {
+	float: left;
+	margin: 0;
+}
+.OMsite  #Login  p {
+	padding-top: 2px;
+	padding-right: 5px;
+	padding-bottom: 2px;
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	font-style: italic;
+	color: #333333;
+}
+#RegisterNowDiv {
+	float: left;
+	width: 190px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	padding: 4px 0 5px 5px;
+	text-align: left;
+}
+#RegisterNowDiv a:link{
+	color: #003399;
+	text-decoration: none;
+}
+#RegisterNowDiv a:visited{
+	color: #003399;
+	text-decoration: none;
+}
+#RegisterNowDiv a:hover{
+	color: #003399;
+	text-decoration: underline;
+}
+#RegisterNowDiv a:active{
+	color: #003399;
+	text-decoration: underline;
+}
+.OMsite #LoginText {
+	width: 120px;
+	float: left;
+	margin: 0 0 0 8px;
+	font-size: 11px;
+	font-weight: bold;
+	font-style: italic;
+	color: #003399;
+}
+.OMsite #LoginText a:link {
+	color: #003399;
+	text-decoration: none;	
+}
+.OMsite #LoginText a:visited {
+	color: #003399;
+	text-decoration: none;	
+}
+.OMsite #LoginText a:hover{
+	color: #003399;
+	text-decoration: underline;	
+}
+.OMsite #LoginText a:active{
+	color: #003399;
+	text-decoration: underline;	
+}
+.OMsite #WelcomeUser {
+	float: left;
+	width: 248px;
+	padding: 2px 5px 0 2px;
+	color: #F3820C;
+	text-align: left;
+}
+.OMsite #LiveChat {
+	float: right;
+	width: 200px;
+	text-align: right;
+	padding-right: 2px;
+}
+
+.OMsite #UsernameDiv {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #F27700;
+	float: left;
+	padding-top: 4px;
+	padding-left: 5px;
+	padding-right: 15px;
+}
+/* 
+  -----------------------------------
+  Pop Menu Magic 2
+  by Project Seven Development
+  www.projectseven.com
+  Menu Type: Horizontal
+  Style Theme: 07 - See-Through
+  -----------------------------------
+*/
+
+/*Menu Outer Wrapper*/
+.p7PMMh07 {
+	width: auto;
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 1px;
+	text-align: left;
+	line-height: normal;
+}
+/*Hide Sub-Menu in Design View*/
+.p7PMMh07 ul div {
+	display: none;
+	margin: 0;
+}
+/*Provide Buffer for lowered 1st level Drop Down*/
+.p7PMMh07 ul div {
+	padding-top: 0px;
+	margin: 0;
+	position: absolute;
+}
+/*Remove Buffer 2nd level flyouts*/
+.p7PMMh07 ul ul div {
+	padding-top: 0px;
+	background-image: none;
+	margin: 0;
+	position: absolute;
+	z-index: 10000;
+}
+/*
+TOP LEVEL MENU
+*/
+.p7PMMh07 ul {
+	margin: 0;
+	padding: 0;
+}
+.p7PMMh07 li {
+	list-style-type: none;
+	float: left;
+	width: 82px;
+	margin: 0;
+	padding: 0;
+}
+/* Hide from IE5 Mac \*/
+.p7PMMh07 li {
+	width: auto;
+}
+/*Top Level Links*/
+.p7PMMh07 ul a {
+	display: block;
+	text-decoration: none;
+	padding: 9px 0 9px 0;
+	color: #FFFFFF !important;
+	text-align: center;
+	width: 109px;
+	margin: 0;
+	border-left: 1px groove #000000;
+	font-weight: bold;
+}
+.p7PMMh07 a:hover {
+	color: #003399 !important;
+	background-color: #B3D9F9;
+}
+.p7PMMh07 a:active {
+	color: #003399 !important;
+	background-color: #B3D9F9;
+}
+.p7PMMh07 li:hover {
+	background-position: 0px -80px;
+}
+/*
+Syntax for special classes programatically assigned to first and last links and also LIs
+See user guide for more information
+*/
+.p7PMMh07 ul a.pmmfirst {
+}
+.p7PMMh07 ul a.pmmlast {
+}
+.p7PMMh07 ul li.pmmfirst {
+}
+.p7PMMh07 ul li.pmmlast {
+}
+/*First Sub Level*/
+.p7PMMh07 ul ul {
+	z-index: 10000;
+	background-color: #F4F4F4;
+	width: 142px;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	margin: 0;
+	border-top: 1px solid #CCCCCC;
+	position: absolute;
+}
+.p7PMMh07 ul ul li {
+	float: none;
+	margin: 0;
+	width: 135px;
+	z-index: 110000;
+	position: relative;
+}
+.p7PMMh07 ul ul a {
+	padding: 7px 0 7px 6px;
+	color: #000 !important;
+	background-color: #F4F4F4;
+	text-align: left;
+	overflow: hidden;
+	width: 135px;
+	margin: 0;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	z-index: 10000;
+}
+.p7PMMh07 ul ul a:hover {
+	background-color: #B3D9F9 !important;
+	color: #003399 !important;
+	padding: 7px 0px 7px 6px;
+	margin: 0;
+}
+/*Third Level (Flyouts in horizontal menu)*/
+.p7PMMh07 ul ul ul {
+	margin: 0;
+}
+/*
+SPECIAL IMAGE-BASED RULES
+*/
+.p7PMMh07 img {
+	border: 0;
+}
+.p7PMMh07 .p7PMM_img {
+	padding: 0;
+	border: 0;
+	background-image: none;
+	background-color: transparent;
+}
+/*
+TRIGGERS and CUURENT MARK RULES
+The Closed state relates to trigger items when their child menus are not showing
+The Open state relates to trigger items when their child menus are showing
+Selectors appended with _left Automatically change arrow position and orientation
+if sub levels are set to fly out to the left
+*/
+
+.p7PMMh07 ul a.trig_closed {
+	background-repeat: no-repeat;
+	margin: 0;
+}
+.p7PMMh07 ul a.trig_closed_up {
+	background-repeat: no-repeat;
+	margin: 0;
+}
+.p7PMMh07 ul li.trig_open, .p7PMMh07 ul li.trig_open_left, .p7PMMh07 ul li.trig_open_up {
+	color: #FFED21 !important;
+	margin: 0;
+}
+/*Sub Level*/
+.p7PMMh07 ul ul a.trig_closed {
+	background-repeat: no-repeat;
+	margin: 0;
+}
+.p7PMMh07 ul ul a.trig_closed_left {
+	background-repeat: no-repeat;
+	margin: 0;
+}
+.p7PMMh07 ul ul a.trig_open {
+	color: #003399 !important;
+	background-image: none;
+	background-color: #B3D9F9 !important;
+	margin: 0;
+}
+/*The Current Marker (You are here) links*/
+.p7PMMh07 .current_mark {
+	color: #FFFFFF !important;
+	margin: 0;
+}
+.p7PMMh07 ul ul .current_mark {
+	color: #000 !important;
+	margin: 0;
+}
+
+/*
+Utility Rule used for Clearing floats in Horizontal Menus
+*/
+.p7pmmclearfloat {
+	clear: both;
+	height: 0;
+	line-height: 0;
+	font-size: 0;
+}
+.button {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+.OMsite #favoriteButton {
+	background-image: url(../images/mainContent/mypage-bgd.jpg);
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+.OMsite #FavBar {
+	background-image: url(../images/mainContent/favoritebar.jpg);
+	background-repeat: repeat-x;
+	margin: 0 5px 0 5px;
+	text-align: center;
+	float: left;
+	clear: both;
+	width: 985px;
+}
+.buttons {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+.OMsite #FavBtn {
+	background-image: url(../images/mainContent/mypage-announce-bgrd.jpg);
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+.OMsite #FavoriteBar {
+	background-image: url(../images/mainContent/add-bgrd.jpg);
+	background-repeat: repeat-x;
+	margin: 0;
+	text-align: right;
+	float: left;
+	clear: both;
+	width: 100%;
+}
+.MyCatalogBtn {
+	background-color: #ECE9D8;
+	font-weight: bold;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	font-size: 12px;
+	color: #003399;
+	padding: 6px 6px 6px 30px;
+	margin: 2px 5px 2px 0;
+	width: 228px;
+	text-align: left;
+	background-image: url(../images/mainContent/add-mycatalog.jpg);
+	background-repeat: no-repeat;
+}
+#FavoriteIcon {
+	text-align: right;
+	float: right;
+	width: 230px;
+}
+
+
+.OMsite #sidebar1 {
+	float: left; /* since this element is floated, a width must be given */
+	width: 200px; /* the actual width of this div, in standards-compliant browsers, or standards mode in Internet Explorer will include the padding and border in addition to the width */
+	background: #F4F4F4;
+	margin: 5px 10px 10px 5px;
+	padding: 0 0 0 0;
+	border-bottom: 1px solid #000000;
+	border-left: 3px solid #A3A3A3;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #A3A3A3;
+	text-align: left;
+}
+* html .OMsite #sidebar1 {
+	display: inline;
+	margin: 0px 5px 5px 5px;
+	padding: 0;
+}
+.OMsite #sidebar1 img {
+	float: left;
+	margin: 0 5px 5px 0;
+}
+
+.OMsite #sidebar1 p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #333333;
+	margin: 2px 5px 2px 5px;
+}
+
+.OMsite #sideNavBarTitle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFED21;
+	padding: 9px 2px 8px 2px;
+	text-align: center;
+	background-repeat: repeat-x;
+	background-image: url(../images/mainContent/titlefade.jpg);
+	font-style: italic;
+}
+
+.OMsite #sideNavBar {
+	padding: 0 0 0 0;
+	width: 200px;
+	border-top: 1px solid #000000;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.OMsite #serviceBarTitle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFED21;
+	padding: 8px 2px 8px 2px;
+	text-align: center;
+	border-bottom: 1px solid #000000;
+	background-image: url(../images/mainContent/titlefade.jpg);
+	background-repeat: repeat-x;
+	font-style: italic;
+}
+.OMsite #serviceBar {
+	padding: 0px;
+	width: 200px;
+	margin: 0 0 0 0;
+	background-color: #F4F4F4;
+}
+.OMsite #serviceBar a:link {
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+.OMsite #serviceBar a:visited {
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+.OMsite #serviceBar a:hover {
+	color: #003399;
+	text-decoration: underline;
+	font-weight: bold;
+}
+.OMsite #serviceBar a:active {
+	color: #003399;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+
+.OMsite #serviceBar h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #003399;
+	text-decoration: none;
+	padding: 0;
+	margin: 5px 0 8px 0;
+}
+.OMsite #serviceBar h2 a:link {
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #serviceBar h2 a:visited {
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #serviceBar h2 a:hover {
+	color: #003399;
+	text-decoration: underline;
+}
+.OMsite #serviceBar h2 a:active {
+	color: #003399;
+	text-decoration: underline;
+}
+
+
+.OMsite #serviceBar h1 {
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	padding: 0 0 0 5px;
+}
+
+.OMsite  #SelectionGuideTitle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFED21;
+	padding: 9px 2px 8px 2px;
+	text-align: center;
+	background-repeat: repeat-x;
+	background-image: url(../images/mainContent/titlefade.jpg);
+	font-style: italic;
+	clear: both;
+}
+.OMsite  #SelectionGuideContent {
+	margin: 0px;
+	padding: 0px;
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #000000;
+	font-size: 10px;
+	height: 140px;
+	background-image: url(../images/hdr/motor-sizing-bgrd.jpg);
+	text-align: center;
+	background-repeat: repeat-x;
+}
+.OMsite #SelectionGuideContent img {
+	float: none;
+}
+
+.OMsite  #SelectionGuideContent  a:link {
+	font-size: 11px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite  #SelectionGuideContent  a:visited {
+	font-size: 11px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite  #SelectionGuideContent  a:hover {
+	font-size: 11px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: underline;
+}
+.OMsite  #SelectionGuideContent  a:active {
+	font-size: 11px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: underline;
+}
+.OMsite  #SelectionGuideTitle  a:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFED21;
+	font-style: italic;
+	text-decoration: none;
+}
+.OMsite  #SelectionGuideTitle  a:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFED21;
+	font-style: italic;
+	text-decoration: none;
+}
+.OMsite  #SelectionGuideTitle  a:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFED21;
+	font-style: italic;
+	text-decoration: underline;
+}
+.OMsite  #SelectionGuideTitle  a:active {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFED21;
+	font-style: italic;
+	text-decoration: underline;
+}
+.OMsite #brkKeyword {
+	border-top: 1px solid #CCCCCC;
+	margin: 3px 0 0 0;
+}
+.OMsite #brkSpec {
+	border-top: 1px solid #CCCCCC;
+	margin: 3px 0 0 0;
+}
+.OMsite #MyPageTitle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFED21;
+	padding: 9px 2px 8px 2px;
+	text-align: center;
+	background-repeat: repeat-x;
+	background-image: url(../images/mainContent/titlefade.jpg);
+	font-style: italic;
+}
+.OMsite #MyPageContent {
+	margin: 0px;
+	padding: 0px;
+	border-bottom: 1px solid #000000;
+	font-size: 10px;
+	background-repeat: no-repeat;
+	background-position: 0 5px;
+	clear: both;
+	background-image: url(../images/hdr/mypage-bgrd.jpg);
+	height: 235px;
+}
+.OMsite #MyPageContent ul {
+	list-style-type: square;
+}
+
+.OMsite #MyPageContent h3 {
+	font-size: 12px;
+	color: #000000;
+	margin: 3px 0 7px 0;
+	padding: 0;
+	border-bottom: 2px dotted #F77601;
+	text-align: center;
+}
+.OMsite #MyPageContent li {
+	list-style-position: outside;
+	margin-left: 10px;
+	list-style-type: square;
+	margin-bottom: 5px;
+}
+.OMsite   #MyPageContent   a:link  {
+	font-size: 11px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite   #MyPageContent   a:visited  {
+	font-size: 11px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #MyPageContent a:hover {
+	font-size: 11px;
+	font-weight: bold;
+	color: #F27700;
+	text-decoration: underline;
+}
+.OMsite #MyPageContent a:active {
+	font-size: 11px;
+	font-weight: bold;
+	color: #F27700;
+	text-decoration: underline;
+}
+.OMsite #MyPageTitle a:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFED21;
+	font-style: italic;
+	text-decoration: none;
+}
+.OMsite #MyPageTitle a:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFED21;
+	font-style: italic;
+	text-decoration: none;
+}
+.OMsite #MyPageTitle a:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFED21;
+	font-style: italic;
+	text-decoration: underline;
+}
+.OMsite #MyPageTitle a:active {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFED21;
+	font-style: italic;
+	text-decoration: underline;
+}
+.NewProductIcon {
+	background-image: url(../images/mainContent/new-icon-sm.gif);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	height: 22px;
+	padding-left: 24px;
+	min-width: 1px;
+	float: left;
+}
+
+
+
+.OMsite #mainContent {
+	margin: 5px 10px 0 7px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+	width: 520px;
+	float: left;
+} 
+* html .OMsite #mainContent {
+	display: inline;
+	margin: 0 5px 0 3px;
+}
+.OMsite #mainContent p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	margin: 0;
+	padding: 0;
+}
+.OMsite #mainContent h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	margin: 2px 2px 5px 0;
+	text-decoration: none;
+}
+
+.OMsite  #mainContent  p  a:link {
+	font-size: 11px;
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+.OMsite #mainContent p a:visited {
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+.OMsite #mainContent p a:hover {
+	color: #003399;
+	text-decoration: underline;
+}
+.OMsite #mainContent p a:active {
+	color: #003399;
+	text-decoration: underline;
+}
+.OMsite #editContent {
+	width: 775px;
+	float: right;
+}
+* html .OMsite #editContent {
+	background-color: #F4F4F4;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	width: auto;
+	margin: 5px 0 0 0;
+	padding: 0;
+}
+.OMsite #mainColumn1 {
+	float: left;
+	width: 241px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	margin: 5px 10px 5px 0;
+	padding: 5px 5px 5px 5px;
+	background-color: #F4F4F4;
+	text-align: center;
+	height: 200px;
+}
+.OMsite #mainColumn1 img {
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-top: 1px solid #CCCCCC;
+}
+.OMsite #mainColumn2 img {
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-top: 1px solid #CCCCCC;
+}
+
+
+.OMsite #columnHeader {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #F0E315;
+	text-align: center;
+	padding: 8px 2px 7px 2px;
+	background-image: url(../images/mainContent/titlefade.jpg);
+	background-repeat: repeat-x;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #a3a3a3;
+	border-right: 1px solid #000000;
+}
+.OMsite #mainColumn2 {
+	float: right;
+	width: 241px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	padding: 5px 5px 5px 5px;
+	margin: 5px 0 5px 0;
+	background-color: #F4F4F4;
+	text-align: center;
+	height: 200px;
+}
+.OMsite #newsHeader {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 7px 0 7px 0;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #a3a3a3;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	margin: 5px 0 5px 0;
+	font-style: italic;
+	background-image: url(../images/mainContent/titlefade.jpg);
+	background-repeat: repeat-x;
+}
+
+
+.OMsite #secondaryColumn1 {
+	float: left;
+	width: 241px;
+	border-left: 1px solid #CCCCCC;
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	padding: 5px 5px 5px 5px;
+	margin: 5px 0 5px 0;
+	background-color: #F4F4F4;
+	text-align: center;
+	height: 200px;
+}
+.OMsite #secondaryColumn1 img {
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-top: 1px solid #CCCCCC;
+}
+
+.OMsite #secondaryColumn2 {
+	float: right;
+	width: 241px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	margin: 5px 0 5px 0;
+	padding: 5px 5px 5px 5px;
+	background-color: #F4F4F4;
+	text-align: center;
+	height: 200px;
+}
+.OMsite #secondaryColumn2 img {
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-top: 1px solid #CCCCCC;
+}
+.OMsite #newsColumn1 {
+	float: left;
+	width: 241px;
+	border-left: 1px solid #CCCCCC;
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	padding: 5px 5px 5px 5px;
+	margin: 5px 0 5px 0;
+	height: 150px;
+	background-color: #F4F4F4;
+}
+.OMsite #newsColumn2 {
+	float: right;
+	width: 241px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	margin: 5px 0 5px 0;
+	padding: 5px 5px 5px 5px;
+	height: 150px;
+	background-color: #F4F4F4;
+}
+.OMsite #homeCADimg {
+	float: left;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	margin: 0 10px 0 0;
+}
+.OMsite #footer {
+	padding: 0 10px 0 20px;
+	border-bottom: 1px solid #000000;
+	border-left: 2px solid #a3a3a3;
+	border-right: 1px solid #000000;
+	border-top: 2px solid #a3a3a3;
+	margin: 10px 5px 5px 5px;
+	background-repeat: repeat-x;
+	height: 135px;
+	background-color: #cccccc;
+	background-image:url(../images/hdr/ftr-bgrd.jpg)
+} 
+.OMsite #footer p {
+	margin: 0; /* zeroing the margins of the first element in the footer will avoid the possibility of margin collapse - a space between divs */
+	padding: 5px 0; /* padding on this element will create space, just as the the margin would have, without the margin collapse issue */
+	color: #003399;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.OMsite #footer p a:link {
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.OMsite #footer p a:visited {
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+.OMsite #footer p a:hover {
+	color: #003399;
+	text-decoration: underline;
+	font-weight: bold;
+}
+.OMsite #footer p a:active {
+	color: #003399;
+	text-decoration: underline;
+	font-weight: bold;
+}
+.FooterLinks {
+	float: left;
+	width: 180px;
+	margin-top: 5px;
+	margin-right: 10px;
+	text-align: left;
+}
+.FooterLinks h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	padding: 4px 0 4px 0;
+	margin: 0;
+	font-weight: bold;
+	border-bottom: 2px dotted #111111;
+}
+.OMsite #copyOM {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #333333;
+	clear: both;
+	border-top: 2px solid #A3A3A3;
+	height: 45px;
+}
+#copy {
+	float: left;
+	margin: 15px 10px 10px 10px;
+}
+
+#socialIcons {
+	width: 265px;
+	float:right;
+	margin: 5px 10px 10px 10px;
+}
+#socialIcons img {
+	float: none;
+	border: none;
+	margin: 0 2px 0 2px;
+}
+#followUs {
+	padding: 12px 5px 10px 5px;
+	float: left;
+}
+.fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+/* SpryMenuBarVertical.css - Revision: Spry Preview Release 1.4 */
+
+/* Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. */
+
+/*******************************************************************************
+
+ LAYOUT INFORMATION: describes box model, positioning, z-order
+
+ *******************************************************************************/
+
+/* The outermost container of the Menu Bar, a fixed width box with no margin or padding */
+ul.MenuBarVertical
+{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 100%;
+	cursor: default;
+	width: 200px;
+}
+/* Set the active Menu Bar with this class, currently setting z-index to accomodate IE rendering bug: http://therealcrisp.xs4all.nl/meuk/IE-zindexbug.html */
+ul.MenuBarActive
+{
+	z-index: 1000;
+}
+/* Menu item containers, position children relative to this container and are same fixed width as parent */
+ul.MenuBarVertical li
+{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 12px;
+	position: relative;
+	text-align: left;
+	cursor: pointer;
+	width: 200px;
+	background-color: #F4F4F4;
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-left: 0px solid #003399;
+}
+/* Submenus should appear slightly overlapping to the right (95%) and up (-5%) with a higher z-index, but they are initially off the left side of the screen (-1000em) */
+ul.MenuBarVertical ul
+{
+	margin: 0 0 0 95%;
+	padding: 0;
+	list-style-type: none;
+	font-size: 11px;
+	position: absolute;
+	z-index: 1020;
+	cursor: default;
+	width: 200px;
+	left: -1000em;
+	top: 0;
+	border-left: 1px solid #003399;
+}
+/* Submenu that is showing with class designation MenuBarSubmenuVisible, we set left to 0 so it comes onto the screen */
+ul.MenuBarVertical ul.MenuBarSubmenuVisible
+{
+	left: 0;
+}
+/* Menu item containers are same fixed width as parent */
+ul.MenuBarVertical ul li
+{
+	width: 200px;
+	font-size: 11px;
+}
+
+/*******************************************************************************
+
+ DESIGN INFORMATION: describes color scheme, borders, fonts
+
+ *******************************************************************************/
+
+ul.MenuBarVertical
+{
+}
+ul.MenuBarVertical ul
+{
+	border-left: 1px solid #A3A3A3;
+	border-top: 1px solid #A3A3A3;
+}
+ul.MenuBarVertical a
+{
+	display: block;
+	cursor: pointer;
+	background-color: #F4F4F4;
+	padding: 0.5em 0.75em;
+	color: #000000;
+	text-decoration: none;
+}
+/* Menu items that have mouse over or focus have a blue background and white text */
+ul.MenuBarVertical a:hover, ul.MenuBarVertical a:focus
+{
+	background-color: #B3D9F9;
+	color: #003399;
+}
+/* Menu items that are open with submenus are set to MenuBarItemHover with a blue background and white text */
+ul.MenuBarVertical a.MenuBarItemHover, ul.MenuBarVertical a.MenuBarItemSubmenuHover, ul.MenuBarVertical a.MenuBarSubmenuVisible
+{
+	background-color: #B3D9F9;
+	color: #003399;
+}
+
+/*******************************************************************************
+
+ SUBMENU INDICATION: styles if there is a submenu under a given menu item
+
+ *******************************************************************************/
+
+/* Menu items that have a submenu have the class designation MenuBarItemSubmenu and are set to use a background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarVertical a.MenuBarItemSubmenu
+{
+	background-image: url(../images/sidebar/MenuRightGrey.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+
+/* Menu items that are open with submenus have the class designation MenuBarItemSubmenuHover and are set to use a "hover" background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarVertical a.MenuBarItemSubmenuHover
+{
+	background-image: url(../images/sidebar/MenuRightBlue.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+
+
+/*******************************************************************************
+
+ BROWSER HACKS: the hacks below should not be changed unless you are an expert
+
+ *******************************************************************************/
+
+/* HACK FOR IE: to make sure the sub menus show above form controls, we underlay each submenu with an iframe */
+ul.MenuBarVertical iframe
+{
+	position: absolute;
+	z-index: 1010;
+}
+/* HACK FOR IE: to stabilize appearance of menu items; the slash in float is to keep IE 5.0 from parsing */
+@media screen, projection
+{
+	ul.MenuBarVertical li.MenuBarItemIE
+	{
+		display: inline;
+		f\loat: left;
+		background: #FFF;
+	}
+}
+.searchbg {
+	background-color: #F4F4F4;
+    border-top: 1px solid #9C9C9B;
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-left: 1px solid #9C9C9B;
+}
+.searchtitle {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 13px;
+	font-weight : bold;
+	text-decoration:none;
+	color:#003399;
+	font-style: italic;
+}
+.searchtitle a:link {
+	color: #003399;
+	text-decoration: none;
+}
+.searchtitle a:visited {
+	color: #003399;
+	text-decoration: none;
+}
+.searchtitle a:hover {
+	color: #003399;
+	text-decoration: underline;
+}
+.searchtitle a:active {
+	color: #003399;
+}
+
+.searchtext {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	text-decoration:none;
+	color:#000000;
+}
+.searchtext a:link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #003399;
+	text-decoration: none;
+	font-weight: normal;
+}
+.searchtext a:visited {
+	color: #003399;
+}
+.searchtext a:hover {
+	color: #003399;
+	text-decoration: underline;
+}
+.searchtext a:active {
+	color: #003399;
+}
+
+.text1{
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	text-decoration:none;
+	color:#000000;
+}
+.TextHighlight {
+	font-weight: bold;
+	color: #000000;
+}
+
+
+.jumpGo {
+	height: 20px;
+	width: 40px;
+	background-color: #A3A3A3;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #D3D3D3;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #D3D3D3;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	font-weight: bolder;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.text1:link {
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	text-decoration:underline;
+	color:#000000;
+}
+.text1:visited {
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	text-decoration:underline;
+	color:#000000;
+}
+.text1:hover {
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	text-decoration:none;
+	color:#000000;
+}
+form { margin-bottom: 0 ; margin-top: 0 ; 
+}  /* for IE */
+.notes {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	margin-bottom: 5px;
+}
+
+/*select {
+   font-size: 10px; 
+   font-family:verdana, arial, sans-serif;  
+}
+input {
+   font-size: 10px; 
+   font-family:verdana, arial, sans-serif;
+}
+textarea {
+   font-size: 10px; 
+   font-family:verdana, arial, sans-serif;
+}*/
+.forms {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	background-color: #fff;
+	border-style: groove;
+	border-top: 1px solid #9C9C9B;
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-left: 1px solid #9C9C9B;
+	padding : 1 1 1 1;
+	font-style: normal;
+}
+
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.style3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: medium;
+}
+.style4 {font-size: small}
+.style5 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style6 {color: #CC0000}
+.OMsite #productOverviewTitle {
+	margin: 5px 5px 0 10px;
+	font-size: 16px;
+	font-weight: bold;
+	background-image: url(../images/mainContent/titlefade.jpg);
+	background-repeat: repeat-x;
+	color: #FFFFFF;
+	padding: 0 0 0 5px;
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	height: 31px;
+}
+.OMsite #productOverviewTitle a:link {
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.OMsite #productOverviewTitle a:visited {
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.OMsite #productOverviewTitle a:hover {
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+.OMsite  #productOverviewTitle  a:active {
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+* html .OMsite #productOverviewTitle {
+	margin: 0 0 5px 0
+}
+.OMsite  #productOverviewTitleText {
+	padding: 10px 0 0 0;
+	color: #FFF;
+}
+.OMsite  #productOverviewTitleText h1 {
+	padding: 0;
+	margin: 0;
+	color: #FFF;
+	font-size: 16px;
+	font-weight: bold;
+}
+.OMsite #productOverviewTitle img {
+	float: left;
+	margin-right: 10px;
+}
+
+.OMsite #productOverview {
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	padding-left: 5px;
+	margin: 0 5px 0 10px;
+	text-align: left;
+	font-size: 11px;
+	background-color: #F4F4F4;
+}
+* html .OMsite #productOverview {
+	display: inline;
+	border: none;
+	background: none;
+}
+.OMsite #productOverviewMain {
+	float: left;
+	margin: 0 10px 10px 0;
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+}
+* html .OMsite #productOverviewMain {
+	display: inline;
+}
+.OMsite #productOverview ul {
+	list-style-position: inside;
+	list-style-type: square;
+	margin: 5px 5px 5px 15px;
+}
+.OMsite #productOverview a:link {
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+.OMsite #productOverview a:visited {
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+.OMsite #productOverview a:hover {
+	color: #003399;
+	text-decoration: underline;
+	font-weight: bold;
+}
+.OMsite #productOverview a:active {
+	color: #003399;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+
+.OMsite  #productOverview  p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	margin: 5px;
+}
+.OMsite #productApplications {
+	margin: 0 5px 0 5px;
+	padding: 0;
+	width: 220px;
+	float: right;
+}
+* html .OMsite #productApplications {
+	display: inline;
+}
+.OMsite #productTypes {
+	margin: 10px 0 10px 5px;
+}
+
+* html .OMsite #productTypes {
+	display: inline;
+	margin: 0;
+}
+	
+.OMsite #productTypes img {
+	float: left;
+	margin: 0 5px 10px 0;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+}
+.OMsite #productTypes a:link {
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+.OMsite #productTypes a:visited {
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #productTypes a:hover {
+	color: #003399;
+	text-decoration: underline;
+}
+.OMsite #productTypes a:active {
+	color: #003399;
+	text-decoration: underline;
+}
+
+
+.OMsite #productTypes p {
+	margin: 0 5px 0 2px;
+	font-size: 11px;
+}
+.OMsite  #productTypes  p a:link {
+	font-weight: normal;
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #productTypes p a:visited {
+	text-decoration: none;
+	font-weight: normal;
+}
+.OMsite #productTypes p a:hover {
+	color: #003399;
+	text-decoration: underline;
+	font-weight: normal;
+}
+.OMsite #productTypes p a:active {
+	color: #003399;
+	text-decoration: underline;
+	font-weight: normal;
+}
+
+
+.OMsite  #productTypes  h1 {
+	font-size: 12px;
+	color: #FFFFFF;
+	background-image: url(../images/mainContent/titlefade.jpg);
+	background-repeat: repeat-x;
+	text-align: center;
+	padding: 7px 0 9px 0;
+	vertical-align: text-top;
+	margin: 0 0 5px 0;
+}
+.OMsite #productTypes h2 {
+	font-size: 11px;
+	margin: 10px 0 5px 5px;
+	clear: left;
+	text-decoration: none;
+}
+.OMsite #productOverview h3 {
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	margin: 10px 0 10px 10px;
+}
+
+
+
+
+.OMsite #productTypes li {
+	list-style-position: outside;
+	list-style-type: square;
+	font-size: 11px;
+	line-height: 13px;
+	margin: 0;
+}
+.OMsite #productTypes ul {
+	clear: left;
+	list-style-position: outside;
+	margin-top: 0px;
+}
+
+.OMsite #productType1 {
+	margin: 0 5px 5px 5px;
+	float: left;
+	width: 244px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	background-color: #B3D9F9;
+}
+* html .OMsite #productType1 {
+	display: inline;
+}
+.OMsite #productType2 {
+	margin: 0 5px 5px 5px;
+	float: left;
+	width: 244px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	background-color: #B3D9F9;
+}
+* html .OMsite #productType2 {
+	display: inline;
+}
+.OMsite #productType3 {
+	margin: 0 5px 5px 5px;
+	float: left;
+	width: 244px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	background-color: #B3D9F9;
+}
+* html .OMsite #productType3 {
+	display: inline;
+}
+.OMsite #productType4 {
+	margin: 0 5px 5px 5px;
+	float: left;
+	width: 244px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	background-color: #B3D9F9;
+}
+* html .OMsite #productType4 {
+	display: inline;
+}
+.OMsite #productType5 {
+	margin: 0 5px 5px 5px;
+	float: left;
+	width: 244px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	background-color: #B3D9F9;
+}
+* html .OMsite #productType5 {
+	display: inline;
+}
+.OMsite #productType6 {
+	margin: 0 5px 5px 5px;
+	float: left;
+	width: 244px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	background-color: #B3D9F9;
+}
+* html .OMsite #productType6 {
+	display: inline;
+}
+.OMsite #productType7 {
+	margin: 0 5px 5px 5px;
+	float: left;
+	width: 244px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	background-color: #B3D9F9;
+}
+* html .OMsite #productType7 {
+	display: inline;
+}
+
+.OMsite #productType8 {
+	margin: 0 5px 5px 5px;
+	float: left;
+	width: 244px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	background-color: #B3D9F9;
+}
+* html .OMsite #productType8 {
+	display: inline;
+}
+
+.OMsite #productType9 {
+	margin: 0 5px 5px 5px;
+	float: left;
+	width: 244px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	background-color: #B3D9F9;
+}
+* html .OMsite #productType9 {
+	display: inline;
+}
+
+.OMsite #productTech {
+	margin: 0 5px 5px 5px;
+	float: left;
+	width: 244px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	background-color: #B3D9F9;
+}
+* html .OMsite #productTech {
+	display: inline;
+}
+.jumpMenu {
+z-index:999
+}
+.ddlSearchType {
+z-index:999
+}
+/* SpryMenuBarHorizontal.css - Revision: Spry Preview Release 1.4 */
+
+/* Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. */
+
+/*******************************************************************************
+
+ LAYOUT INFORMATION: describes box model, positioning, z-order
+
+ *******************************************************************************/
+
+/* The outermost container of the Menu Bar, an auto width box with no margin or padding */
+ul.MenuBarHorizontal
+{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 12px;
+	cursor: default;
+	width: auto;
+	border: none;
+}
+/* Set the active Menu Bar with this class, currently setting z-index to accomodate IE rendering bug: http://therealcrisp.xs4all.nl/meuk/IE-zindexbug.html */
+ul.MenuBarActive
+{
+	z-index: 1000;
+}
+/* Menu item containers, position children relative to this container and are a fixed width */
+ul.MenuBarHorizontal li
+{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 12px;
+	position: relative;
+	text-align: left;
+	cursor: pointer;
+	width: 178px;
+	float: left;
+	border: none;
+}
+/* Submenus should appear below their parent (top: 0) with a higher z-index, but they are initially off the left side of the screen (-1000em) */
+ul.MenuBarHorizontal ul
+{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 12px;
+	z-index: 1020;
+	cursor: default;
+	width: 178px;
+	position: absolute;
+	left: -1000em;
+	border: none;
+}
+/* Submenu that is showing with class designation MenuBarSubmenuVisible, we set left to auto so it comes onto the screen below its parent menu item */
+ul.MenuBarHorizontal ul.MenuBarSubmenuVisible
+{
+	left: auto;
+}
+/* Menu item containers are same fixed width as parent */
+ul.MenuBarHorizontal ul li
+{
+	width: 178px;
+	border: 1px solid #B9D3F3;
+	background-color: #D7E8F7;
+}
+/* Submenus should appear slightly overlapping to the right (95%) and up (-5%) */
+ul.MenuBarHorizontal ul ul
+{
+	position: absolute;
+	margin: -5% 0 0 95%;
+}
+/* Submenu that is showing with class designation MenuBarSubmenuVisible, we set left to 0 so it comes onto the screen */
+ul.MenuBarHorizontal ul.MenuBarSubmenuVisible ul.MenuBarSubmenuVisible
+{
+	left: auto;
+	top: 0;
+}
+
+/*******************************************************************************
+
+ DESIGN INFORMATION: describes color scheme, borders, fonts
+
+ *******************************************************************************/
+
+/* Submenu containers have borders on all sides */
+ul.MenuBarHorizontal ul
+{
+	background-color: #F4F4F4;
+	border-top: 1px solid #CCCCCC;
+}
+/* Menu items are a light gray block with padding and no text decoration */
+ul.MenuBarHorizontal a
+{
+	display: block;
+	cursor: pointer;
+	padding: 3px;
+	color: #000000;
+	text-decoration: none;
+	font-size: 12px;
+}
+/* Menu items that have mouse over or focus have a blue background and white text */
+ul.MenuBarHorizontal a:hover, ul.MenuBarHorizontal a:focus
+{
+	color: #000000;
+	text-decoration: none;
+}
+/* Menu items that are open with submenus are set to MenuBarItemHover with a blue background and white text */
+ul.MenuBarHorizontal a.MenuBarItemHover, ul.MenuBarHorizontal a.MenuBarItemSubmenuHover, ul.MenuBarHorizontal a.MenuBarSubmenuVisible
+{
+	color: #003399;
+}
+.MenuBarSubmenuVisible a:link {
+	font-weight: normal;
+	background-color: #F4F4F4;
+}
+.MenuBarSubmenuVisible a:visited {
+	font-weight: normal;
+	background-color: #F4F4F4;
+}
+.MenuBarSubmenuVisible a:hover {
+	font-weight: normal;
+	background-color: #D7E8F7;
+}
+.MenuBarSubmenuVisible a:active {
+	font-weight: normal;
+	background-color: #D7E8F7;
+}
+
+
+
+/*******************************************************************************
+
+ SUBMENU INDICATION: styles if there is a submenu under a given menu item
+
+ *******************************************************************************/
+
+/* Menu items that have a submenu have the class designation MenuBarItemSubmenu and are set to use a background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarHorizontal a.MenuBarItemSubmenu
+{
+	background-image: url(../images/sidebar/SpryMenuBarDown.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+/* Menu items that have a submenu have the class designation MenuBarItemSubmenu and are set to use a background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarHorizontal ul a.MenuBarItemSubmenu
+{
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+/* Menu items that are open with submenus have the class designation MenuBarItemSubmenuHover and are set to use a "hover" background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarHorizontal a.MenuBarItemSubmenuHover
+{
+	background-image: url(../images/sidebar/SpryMenuBarDown.gif);
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+/* Menu items that are open with submenus have the class designation MenuBarItemSubmenuHover and are set to use a "hover" background image positioned on the far left (95%) and centered vertically (50%) */
+ul.MenuBarHorizontal ul a.MenuBarItemSubmenuHover
+{
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+
+/*******************************************************************************
+
+ BROWSER HACKS: the hacks below should not be changed unless you are an expert
+
+ *******************************************************************************/
+
+/* HACK FOR IE: to make sure the sub menus show above form controls, we underlay each submenu with an iframe */
+ul.MenuBarHorizontal iframe
+{
+	position: absolute;
+	z-index: 1010;
+}
+/* HACK FOR IE: to stabilize appearance of menu items; the slash in float is to keep IE 5.0 from parsing */
+@media screen, projection
+{
+	ul.MenuBarHorizontal li.MenuBarItemIE
+	{
+		display: inline;
+		f\loat: left;
+		background: #FFF;
+	}
+}
+.OMsite #productGroups {
+}
+.OMsite #productGroups img {
+	border: none;
+	float: none;
+}
+.TabActive {
+	width: 98px;
+	background-color: #003399;
+	border-bottom: 1px solid #003399;
+	border-left: 1px solid #003399;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #003399;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	padding: 5px;
+	float: left;
+	font-weight: bold;
+	vertical-align: middle;
+	height: 31px;
+	text-align: center;
+	margin: 0;
+	color: #FFED21;
+}
+.TabInactive {
+	width: 99px;
+	background-color: #999999;
+	border-left: none;
+	border-right: 1px solid #CCCCCC;
+	border-top: 1px solid #CCCCCC;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	padding: 3px;
+	float: left;
+	font-weight: bold;
+	vertical-align: middle;
+	height: 28px;
+	text-align: center;
+	margin: 8px 0 0 0;
+	border-bottom: none;
+}
+.OMsite #container #editContent #productOverview .TabInactive a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.OMsite #container #editContent #productOverview .TabInactive a:visited {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.OMsite #container #editContent #productOverview .TabInactive a:hover {
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #container #editContent #productOverview .TabInactive a:active {
+	color: #003399;
+	text-decoration: none;
+}
+.OMsite #container #editContent #productOverview .TabActive a {
+	color: #333333;
+	text-decoration: none;
+}
+#TabContentI {
+	border: 1px solid #003399;
+	margin: 1px 1px 5px 1px;
+	float: none;
+	clear: both;
+}
+#TabsDefault {
+	margin: 5px 0 0 0;
+	height: 42px;
+	clear: both;
+	vertical-align: bottom;
+}
+#TabsMenuI  {
+	margin: 5px 0 0 0;
+	height: 42px;
+	clear: both;
+}
+#TabContentII {
+	border: 1px solid #003399;
+	margin: 1px 1px 5px 1px;
+	float: none;
+	clear: both;
+}
+#TabsMenuII  {
+	margin: 5px 0 0 0;
+	height: 42px;
+	clear: both;
+}
+#TabContentIII {
+	border: 1px solid #003399;
+	margin: 1px 1px 5px 1px;
+	float: none;
+	clear: both;
+}
+#TabsMenuIII  {
+	margin: 5px 0 0 0;
+	height: 42px;
+	clear: both;
+}
+#TabContentIV {
+	border: 1px solid #003399;
+	margin: 1px 1px 5px 1px;
+	float: none;
+	clear: both;
+}
+#TabsMenuIV {
+	margin: 5px 0 0 0;
+	height: 42px;
+	clear: both;
+}
+#TabContentV {
+	border: 1px solid #003399;
+	margin: 1px 1px 5px 1px;
+	clear: both;
+	float: none;
+}
+#TabsMenuV  {
+	margin: 5px 0 0 0;
+	height: 42px;
+	clear: both;
+}
+#TabContentVI {
+	border: 1px solid #003399;
+	margin: 1px 1px 5px 1px;
+	float: none;
+	clear: both;
+}
+#TabsMenuVI  {
+	margin: 5px 0 0 0;
+	height: 42px;
+	clear: both;
+}
+#TabContentVII {
+	border: 1px solid #003399;
+	margin: 1px 1px 5px 1px;
+	clear: both;
+	float: none;
+}
+#TabsMenuVII  {
+	margin: 5px 0 0 0;
+	height: 42px;
+	clear: both;
+}
+.OMsite #RegionLinks {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	float: left;
+	width: 260px;
+	margin: 0 0 0 20px;
+}
+.OMsite #RegionLinks a:link {
+	color: #039;
+	text-decoration: none;
+}
+.OMsite #RegionLinks a:visited {
+	color: #039;
+	text-decoration: none;
+}
+.OMsite #RegionLinks a:hover {
+	color: #039;
+	text-decoration: underline;
+}
+.OMsite #RegionLinks a:active {
+	color: #039;
+	text-decoration: underline;
+}
+.OMsite #SelectCountry {
+	color: #003399;
+	background-image: url(../images/mainContent/select-down.jpg);
+	background-repeat: no-repeat;
+	width: 110px;
+	margin-left: 5px;
+	padding-left: 2px;
+	float: left;
+}
+.SeriesOverview {
+	background-color: #f4f4f4;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	margin: 5px 5px 5px 10px;
+}
+.SeriesOverview a:link{
+	text-decoration:none;
+}
+.SeriesOverview a:visited{
+	text-decoration:none;
+}
+.SeriesOverview a:hover{
+	text-decoration:underline;
+}
+.SeriesOverview a:active{
+	text-decoration:underline;
+}
+
+.SeriesOverview img {
+	float: left;
+	margin: 0 5px 5px 5px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+}
+.SeriesOverview h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0 0 5px 0;
+	padding: 5px 0 5px 10px;
+	background-image:url(../images/mainContent/btn-fade.jpg);
+	background-repeat:repeat-x;
+	background-color: #0c1856;
+	color:#FFF;
+}
+.OMsite #editContent .SeriesOverview p{
+	font-size: 11px;
+	margin: 5px 10px 5px 10px;
+}
+.SeriesFeatureTitle {
+	font-size: 12px;
+	font-weight:bold;
+	border-bottom: 1px solid #003399;
+	padding: 3px;
+	margin: 5px 0 5px 0;
+	float: left;
+	width: 570px;
+}
+.SeriesFeatureList {
+	float: left;
+	padding: 0;
+	width: 300px;
+}
+.SeriesFeatureList ul  {
+	list-style-position: outside;
+	margin: 5px;
+	padding: 0;
+	font-size: 11px;
+}
+.SeriesFeatureList li  {
+	list-style-position: outside;
+	list-style-type: square;
+	padding: 0;
+	font-size: 11px;
+	margin: 0 5px 2px 15px;
+}
+.SeriesFeatureList li a:link {
+	list-style-position: outside;
+	padding: 0;
+	font-size: 12px;
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+.SeriesFeatureList li a:visited {
+	list-style-position: outside;
+	padding: 0;
+	font-size: 12px;
+	color: #003399;
+	text-decoration: none;
+	font-weight: bold;
+}
+.SeriesFeatureList li a:hover {
+	list-style-position: outside;
+	padding: 0;
+	font-size: 12px;
+	color: #003399;
+	text-decoration: underline;
+	font-weight: bold;
+}
+.SeriesFeatureList li a:active {
+	list-style-position: outside;
+	padding: 0;
+	font-size: 12px;
+	color: #003399;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.SeriesInfo {
+	float: left;
+	padding: 0;
+	margin: 5px;
+	width: 230px;
+}
+.SeriesOverview2 {
+	background-color: #f4f4f4;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	margin: 5px 5px 10px 10px;
+	float:left;
+	width: 370px;
+}
+.SeriesOverview2 a:link{
+	text-decoration:none;
+}
+.SeriesOverview2 a:visited{
+	text-decoration:none;
+}
+.SeriesOverview2 a:hover{
+	text-decoration:underline;
+}
+.SeriesOverview2 a:active{
+	text-decoration:underline;
+}
+
+.SeriesOverview2 img {
+	float: left;
+	margin: 0 5px 5px 5px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+}
+.SeriesOverview2 h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0 0 5px 0;
+	padding: 5px 0 5px 10px;
+	background-image:url(../images/mainContent/btn-fade.jpg);
+	background-repeat:repeat-x;
+	background-color: #0c1856;
+	color:#FFF;
+}
+.SeriesOverview3 h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0 0 5px 0;
+	padding: 5px 0 5px 10px;
+	background-image:url(../images/mainContent/btn-fade.jpg);
+	background-repeat:repeat-x;
+	background-color: #0c1856;
+	color:#FFF;
+}
+.OMsite #editContent .SeriesOverview2 p{
+	font-size: 11px;
+	margin: 5px 10px 5px 10px;
+}
+.SeriesFeatureTitle2 {
+	font-size: 12px;
+	font-weight:bold;
+	border-bottom: 1px solid #003399;
+	padding: 3px;
+	margin: 5px 0 5px 0;
+	float: left;
+	width: 190px;
+}
+.SeriesFeatureList2 {
+	float: left;
+	padding: 0;
+	width: 200px;
+}
+.SeriesFeatureList2 ul  {
+	list-style-position: outside;
+	margin: 5px;
+	padding: 0;
+	font-size: 11px;
+}
+.SeriesFeatureList2 li  {
+	list-style-position: outside;
+	list-style-type: square;
+	padding: 0;
+	font-size: 11px;
+	margin: 0 5px 2px 15px;
+}
+.SeriesInfo2 {
+	float: right;
+	padding: 0;
+	margin: 5px;
+	width: 195px;
+}
+.SeriesOptionList1c {
+	float: left;
+	padding: 0;
+	width: 575px;
+	margin-right: 7px;
+}
+.SeriesOptionList1c a {
+	text-decoration:none;
+	font-size: 12px;
+	color: #003399;
+	font-weight:bold;
+	margin: 5px;
+}
+.SeriesOptionList1c ul  {
+	list-style-position: outside;
+	margin: 5px;
+	padding: 0;
+	font-size: 11px;
+}
+.SeriesOptionList1c li  {
+	list-style-position: outside;
+	list-style-type: square;
+	padding: 0;
+	font-size: 11px;
+	margin: 0 5px 2px 15px;
+}
+.SeriesOptionList2c {
+	float: left;
+	padding: 0;
+	width: 275px;
+	margin-right: 7px;
+}
+.SeriesOptionList2c a {
+	text-decoration:none;
+	font-size: 12px;
+	color: #003399;
+	font-weight:bold;
+	margin: 5px;
+}
+.SeriesOptionList2c ul  {
+	list-style-position: outside;
+	margin: 5px;
+	padding: 0;
+	font-size: 11px;
+}
+.SeriesOptionList2c li  {
+	list-style-position: outside;
+	list-style-type: square;
+	padding: 0;
+	font-size: 11px;
+	margin: 0 5px 2px 15px;
+}
+.SeriesOptionList3c {
+	float: left;
+	padding: 0;
+	width: 190px;
+	margin-right: 7px;
+}
+.SeriesOptionList3c a {
+	text-decoration:none;
+	font-size: 12px;
+	color: #003399;
+	font-weight:bold;
+	margin: 5px;
+	text-indent: 0px;
+}
+.SeriesOptionList3c ul  {
+	list-style-position: outside;
+	margin: 5px;
+	padding: 0;
+	font-size: 11px;
+}
+.SeriesOptionList3c li  {
+	list-style-position: outside;
+	list-style-type: square;
+	padding: 0;
+	font-size: 11px;
+	margin: 0 5px 2px 15px;
+}
+.Price {
+	width: 85px;
+	float: left;
+	font-size: 10px;
+	font-weight: bold;
+	color: #003399;
+	margin: 0 0 5px 5px;
+}
+.PriceSymbol {
+	font-size: 15px;
+	font-weight: bold;
+}
+.PriceCent {
+	font-size: 10px;
+	font-weight: bolder;
+}
+.LeadTime {
+	width: 95px;
+	float: left;
+	font-size: 10px;
+	font-weight: bold;
+	color: #000000;
+	margin: 0 0 5px 5px;
+}
+.LeadTimeDays {
+	font-size: 12px;
+	font-weight: bold;
+}
+.SeriesButtons {
+	margin: 0 5px 0 0;
+	padding: 0;
+	float: left;
+	width: 160px;
+}
+.SeriesButtons2 {
+	margin: 5px;
+	padding: 0;
+	float: left;
+	width: 150px;
+	height: 80px;
+}
+.ClickButton {
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #CCCCCC;
+	width: 135px;
+	background-image:url(../images/mainContent/btn-fade.jpg);
+	background-repeat:repeat-x;
+	background-color: #0c1856;
+	padding: 5px;
+	margin: 5px;
+	text-align:center;
+	clear:left;
+}
+.ClickButton a:link {
+	color: #FFED21;
+	font-size: 11px;
+	text-decoration:none;
+	font-weight: bold;
+}
+.ClickButton a:visited {
+	color: #FFED21;
+	font-size: 11px;
+	text-decoration:none;
+	font-weight: bold;
+}
+.ClickButton a:hover {
+	color: #FFED21;
+	font-size: 11px;
+	text-decoration:none;
+	font-weight: bold;
+}
+.ClickButton a:active {
+	color: #FFED21;
+	font-size: 11px;
+	text-decoration:none;
+	font-weight: bold;
+}
+.STCWrap {
+	height: 34px;
+	vertical-align:bottom;
+	float:none;
+	clear: both;
+	width: 732px;
+	border-bottom: 1px solid #003399;
+}
+.FrameSizeWrap {
+	height: 48px;
+	vertical-align:top;
+	float: none;
+	clear: both;
+	width: 732px;
+	margin-bottom:5px;
+}
+.STCActive {
+	width: 98px;
+	background-color: #003399;
+	border-bottom: 1px solid #003399;
+	border-left: 1px solid #003399;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #003399;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	float: left;
+	font-weight: bold;
+	vertical-align: middle;
+	height: 20px;
+	padding: 6px;
+	text-align: center;
+	margin: 0;
+	color: #FFED21;
+}
+.STCInactive {
+	width: 99px;
+	background-color: #999999;
+	border-left: none;
+	border-right: 1px solid #CCCCCC;
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #999999;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	float: left;
+	font-weight: bold;
+	vertical-align: middle;
+	height: 14px;
+	padding: 6px;
+	text-align: center;
+	margin: 7px 0 0 0;
+	border-bottom: none;
+}
+.OMsite #container #editContent #productOverview .STC .STCWrap .STCInactive a:link {
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.OMsite #container #editContent #productOverview .STC .STCWrap .STCInactive a:visited {
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.OMsite #container #editContent #productOverview .STC .STCWrap .STCInactive a:hover {
+	color: #003399;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.OMsite #container #editContent #productOverview .STC .STCWrap .STCInactive a:active {
+	color: #003399;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.FSActive {
+	width: 80px;
+	background-color: #003399;
+	border-left: 1px solid #003399;
+	border-right: 1px solid #003399;
+	border-top: 1px solid #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	float: left;
+	font-weight: bold;
+	vertical-align: middle;
+	height: 34px;
+	padding: 6px 0;
+	text-align: center;
+	margin: 0;
+	color: #FFED21;
+}
+.FSInactive {
+	width: 80px;
+	background-color: #999999;
+	border-left: none;
+	border-right: 1px solid #CCCCCC;
+	border-top: 1px solid #000000;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	float: left;
+	font-weight: bold;
+	vertical-align: middle;
+	height: 28px;
+	padding: 6px 0;
+	text-align: center;
+	margin: 0 0 6px 0;
+	border-bottom: none;
+}
+.OMsite #container #editContent #productOverview .STC .FrameSizeWrap .FSInactive a:link {
+	color: #ffffff;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.OMsite #container #editContent #productOverview .STC .FrameSizeWrap .FSInactive a:visited {
+	color: #ffffff;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.OMsite #container #editContent #productOverview .STC .FrameSizeWrap .FSInactive a:hover {
+	color: #003399;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.OMsite #container #editContent #productOverview .STC .FrameSizeWrap .FSInactive a:active {
+	color: #003399;
+	font-size: 11px;
+	font-weight: bold;
+	text-decoration: none;
+}
+#BipolarSTC {
+	height: 635px;
+	width: 733px;
+	overflow: scroll;
+}
+#UnipolarSTC {
+	height: 635px;
+	width: 733px;
+	overflow: scroll;
+}
+.OMsite #container #editContent #productOverview .STC #UnipolarSTC a img {
+	margin-left: 3px;
+	margin-right: 3px;
+}
+.OMsite #container #editContent #productOverview .STC #BipolarSTC a img {
+	margin-left: 3px;
+	margin-right: 3px;
+}
+.STC img {
+	margin: 2px;
+}
+
+.STC h4 {
+	border-bottom: 1px solid #000000;
+	font-weight: bold;
+	font-size: 13px;
+	clear: both;
+	margin: 5px 2px;
+	height: 25px;
+	padding: 8px 0 3px 10px;
+	background-color: #003399;
+	color: #ffed21;
+}
+.NewTab {
+	width: 23px;
+	height: 23px;
+	float: left;
+	padding: 0;
+	background-image: url(../images/mainContent/new-tab.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	position: absolute;
+	margin: -3px 2px 0 -2px;
+}
+.OMsite #SystemConfig {
+	width: 500px;
+	float: right;
+	margin: 5px;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #999999;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #999999;
+}
+.TabColumnLeft {
+	float: left;
+	width: 370px;
+	padding: 0;
+	margin: 0;
+}
+.TabColumnRight {
+	float: right;
+	width: 370px;
+	padding: 0;
+	margin: 0;
+}
+.OMsite #productOverview .TabColumnLeft img {
+	float:none;
+}
+.OMsite #productOverview .TabColumnRight img {
+	float:none;
+}
+.Feature {
+	border: 1px solid #cccccc;
+	margin: 5px;
+	clear: both;
+}
+.FeatureLeft {
+	border: 1px solid #cccccc;
+	margin: 5px 0 5px 5px;
+}
+.FeatureRight {
+	border: 1px solid #cccccc;
+	margin: 5px 5px 5px 0;
+}
